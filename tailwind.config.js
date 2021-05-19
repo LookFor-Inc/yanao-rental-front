@@ -12,8 +12,8 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      primary: '#0057ff',
-      primaryDark: '#0046cc',
+      primary: '#FF6C1A',
+      primaryDark: '#E56117',
       error: '#ea0c00',
       errorDark: '#b91c1c',
       success: '#059669',
