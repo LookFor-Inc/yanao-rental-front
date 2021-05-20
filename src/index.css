@@ -103,7 +103,6 @@
   }
 }
 
-
 .nav-link:after {
   content: '';
   @apply bg-primary absolute h-0.5 top-full left-0 right-0 opacity-0 transition duration-100

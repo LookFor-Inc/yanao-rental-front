@@ -17,7 +17,7 @@ export default function Routes() {
       <Router>
         <ScrollToTop />
         <Switch>
-          <CustomRoute path='/' exact>
+          <CustomRoute path='/'>
             <PageLayout>
               <Switch>
                 <CustomRoute
@@ -25,6 +25,12 @@ export default function Routes() {
                   path='/'
                   title='Главная страница'
                   component={lazy(() => import('@/pages/Landing/LandingPage'))}
+                />
+                <CustomRoute
+                  exact
+                  path='/rental-equipment'
+                  title='Страница проката'
+                  component={lazy(() => import('@/pages/Rental/RentalPage'))}
                 />
               </Switch>
             </PageLayout>

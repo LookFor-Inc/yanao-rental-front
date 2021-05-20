@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: {
-    enabled: true,
+    enabled: false,
     content: [
       './src/**/*.{js,jsx,ts,tsx}',
       './public/index.html'
@@ -21,10 +21,12 @@ module.exports = {
     },
     fontFamily: {
       'sans': ['Inter', 'ui-sans-serif', 'system-ui']
+    },
+    extend: {
+      transitionProperty: {
+        'height': 'height'
+      }
     }
-  },
-  variants: {
-    extend: {}
   },
   plugins: [
     require('@tailwindcss/line-clamp')
