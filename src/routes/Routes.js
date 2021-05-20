@@ -1,5 +1,6 @@
 import React, {lazy, Suspense} from 'react'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
+import EmptyLayout from '@/layouts/EmptyLayout'
 import CustomRoute from '@/routes/CustomRoute'
 import PageLoading from '@/routes/PageLoading'
 import ScrollToTop from '@/routes/ScrollToTop'
@@ -17,6 +18,63 @@ export default function Routes() {
       <Router>
         <ScrollToTop />
         <Switch>
+          <CustomRoute
+            path={'/auth/:path?'}
+          >
+            <EmptyLayout>
+              <Switch>
+                <CustomRoute
+                  path='/auth/login'
+                  title='Авторизация'
+                  component={lazy(() => import('@/pages/Login/LoginPage'))}
+                />
+                <CustomRoute
+                  exact
+                  path='/auth/registration'
+                  title='Регистрация'
+                  component={lazy(() => import('@/pages/Registration/RegistrationPage'))}
+                />
+                <CustomRoute
+                  path='/auth/registration/check-email'
+                  title='Подтвердите email | Регистрация'
+                  component={lazy(() => import('@/pages/Registration/CheckEmailPage'))}
+                />
+                <CustomRoute
+                  path='/auth/registration/confirm'
+                  title='Подтверждение email | Регистрация'
+                  component={lazy(() => import('@/pages/Registration/ConfirmEmailPage'))}
+                />
+                <CustomRoute
+                  exact
+                  path='/auth/recovery'
+                  title='Восстановление пароля'
+                  component={lazy(() => import('@/pages/Recovery/RecoveryPage'))}
+                />
+                <CustomRoute
+                  path='/auth/recovery/check-email'
+                  title='Восстановление пароля'
+                  component={lazy(() => import('@/pages/Recovery/CheckEmailPage'))}
+                />
+                <CustomRoute
+                  exact
+                  path='/auth/recovery/confirm'
+                  title='Установка нового пароля'
+                  component={lazy(() => import('@/pages/Recovery/ConfirmRecoveryPage'))}
+                />
+                <CustomRoute
+                  exact
+                  path='/auth/recovery/confirm/complete'
+                  title='Установка нового пароля'
+                  component={lazy(() => import('@/pages/Recovery/CompleteRecoveryPage'))}
+                />
+                <CustomRoute
+                  path='*'
+                  title='Страница не найдена'
+                  component={NotFoundPage}
+                />
+              </Switch>
+            </EmptyLayout>
+          </CustomRoute>
           <CustomRoute path='/'>
             <PageLayout>
               <Switch>

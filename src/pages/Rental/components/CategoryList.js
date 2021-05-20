@@ -1,6 +1,6 @@
 import React from 'react'
 import {Disclosure} from '@headlessui/react'
-import ChevronUpIcon from '@/assets/icons/ChevronUpIcon'
+import ChevronUpIcon from '@/assets/icons/Chevron/ChevronUpIcon'
 import Card from '@/components/Card/Card'
 import Collapse from '@/components/Collapse'
 import CategoryItem from '@/pages/Rental/components/СategoryItem'
