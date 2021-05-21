@@ -1,18 +1,29 @@
 import React from 'react'
-import {string} from 'prop-types'
+import classNames from 'classnames'
+import {bool, string} from 'prop-types'
+import Card from '@/components/Card/Card'
 
-function CategoryItem({title, logo}) {
+function CategoryItem({name, imageUrl, available}) {
+  const classes = classNames(
+    'flex flex-col justify-between items-center text-gray-200 p-4 border-2',
+    {
+      '': available,
+      'opacity-50': !available
+    }
+  )
+
   return (
-    <div className='flex flex-col justify-between items-center text-gray-200 p-4 border-2'>
-      <img src={logo} alt={title} className='object-contain w-24'/>
-      <span className='text-gray-800'>{title}</span>
-    </div>
+    <Card className={classes}>
+      <img src={imageUrl} alt={name} className='object-contain h-16'/>
+      <span className='text-gray-800'>{name}</span>
+    </Card>
   )
 }
 
 CategoryItem.propTypes = {
-  title: string,
-  logo: string
+  name: string,
+  imageUrl: string,
+  available: bool
 }
 
 export default CategoryItem

@@ -1,9 +1,13 @@
 import React from 'react'
+import RentalList from '@/pages/Rental/components/RentalList'
 
 function RentalEquipment() {
   return (
     <div>
-      RentalEquipment
+      <h1 className='text-2xl text-gray-800 font-bold'>
+        Прокат
+      </h1>
+      <RentalList />
     </div>
   )
 }

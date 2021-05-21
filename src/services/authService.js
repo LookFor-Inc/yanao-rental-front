@@ -34,7 +34,6 @@ export async function logoutUser() {
  * @returns {Promise} Запрос
  */
 export async function registerUser(type, email, password) {
-  console.log(type, email, password)
   return await axios.post(API_URL + '/registration', {
     type,
     email,
