@@ -24,7 +24,8 @@ export default function Routes() {
                   exact
                   path='/'
                   title='Главная страница'
-                  component={lazy(() => import('@/pages/Landing/LandingPage'))}
+                  component={lazy(() => import('@/pages/RentService/RentServicePage'))}
+                  // component={lazy(() => import('@/pages/Landing/LandingPage'))}
                 />
                 <CustomRoute
                   exact
