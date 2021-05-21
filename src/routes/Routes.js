@@ -32,6 +32,12 @@ export default function Routes() {
                   title='Страница проката'
                   component={lazy(() => import('@/pages/Rental/RentalPage'))}
                 />
+                <CustomRoute
+                  exact
+                  path='/rental-payment'
+                  title='Страница бронирования'
+                  component={lazy(() => import('@/pages/Payment/PaymentPage'))}
+                />
               </Switch>
             </PageLayout>
           </CustomRoute>
