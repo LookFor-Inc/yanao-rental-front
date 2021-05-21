@@ -1,5 +1,5 @@
 import React from 'react'
-import RentalList from '@/pages/Rental/components/RentalList'
+import RentalList from '@/pages/RentalV1/components/RentalList'
 
 function RentalEquipment() {
   return (

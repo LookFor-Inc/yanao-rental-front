@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryList from '@/pages/Rental/components/CategoryList'
+import CategoryList from '@/pages/RentalV1/components/CategoryList'
 
 function CategoriesEquipment() {
   return (

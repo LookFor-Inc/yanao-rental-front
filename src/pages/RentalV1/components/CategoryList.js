@@ -3,8 +3,8 @@ import {Disclosure} from '@headlessui/react'
 import ChevronDownIcon from '@/assets/icons/Chevron/ChevronDownIcon'
 import Card from '@/components/Card/Card'
 import Collapse from '@/components/Collapse'
-import {useRental} from '@/pages/Rental/components/RentalProvider'
-import CategoryItem from '@/pages/Rental/components/СategoryItem'
+import {useRental} from '@/pages/RentalV1/components/RentalProvider'
+import CategoryItem from '@/pages/RentalV1/components/СategoryItem'
 
 function CategoryList() {
   const {equipmentCategories} = useRental()

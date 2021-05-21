@@ -1,6 +1,7 @@
 import React, {lazy, Suspense} from 'react'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
 import EmptyLayout from '@/layouts/EmptyLayout'
+import RentalLayout from '@/layouts/RentalLayout'
 import CustomRoute from '@/routes/CustomRoute'
 import PageLoading from '@/routes/PageLoading'
 import ScrollToTop from '@/routes/ScrollToTop'
@@ -75,6 +76,30 @@ export default function Routes() {
               </Switch>
             </EmptyLayout>
           </CustomRoute>
+          <CustomRoute
+            path={'/rental/:path?'}
+          >
+            <RentalLayout>
+              <Switch>
+                <CustomRoute
+                  path='/rental/list'
+                  title='Список прокатов'
+                  component={lazy(() => import('@/pages/Rental/RentalListPage'))}
+                />
+                <CustomRoute
+                  exact
+                  path='/rental/map'
+                  title='Карта прокатов'
+                  component={lazy(() => import('@/pages/Rental/RentalMapPage'))}
+                />
+                <CustomRoute
+                  path='*'
+                  title='Страница не найдена'
+                  component={NotFoundPage}
+                />
+              </Switch>
+            </RentalLayout>
+          </CustomRoute>
           <CustomRoute path='/'>
             <PageLayout>
               <Switch>
@@ -88,7 +113,7 @@ export default function Routes() {
                   exact
                   path='/rental-equipment'
                   title='Страница проката'
-                  component={lazy(() => import('@/pages/Rental/RentalPage'))}
+                  component={lazy(() => import('@/pages/RentalV1/RentalV1Page'))}
                 />
               </Switch>
             </PageLayout>

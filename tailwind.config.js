@@ -30,5 +30,11 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/line-clamp')
-  ]
+  ],
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+      boxShadow: ['active']
+    }
+  }
 }

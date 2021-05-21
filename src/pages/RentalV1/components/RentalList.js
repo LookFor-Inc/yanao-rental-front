@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {RadioGroup} from '@headlessui/react'
 import classNames from 'classnames'
-import {useRental} from '@/pages/Rental/components/RentalProvider'
+import {useRental} from '@/pages/RentalV1/components/RentalProvider'
 
 function RentalList() {
   const [selected, setSelected] = useState(false)
