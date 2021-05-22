@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react'
-import {arrayOf, func, object} from 'prop-types'
-import {connect} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {GeolocationControl, Map, Placemark, YMaps} from 'react-yandex-maps'
 import RentalIcon from '@/assets/icons/RentalIcon'
@@ -12,16 +11,18 @@ import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
 import Container from '@/components/Container'
 import RentalCardList from '@/pages/Rental/components/RentalCardList'
-import RentalProvider from '@/pages/RentService/components/RentalProvider'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
 
 /**
  * Главная (целевая) страница веб-сайта
  * @returns {JSX.Element} Целевая страница
  */
-function LandingPage({rentals, fetchEquipmentTypesAndRentals}) {
+function LandingPage() {
+  const dispatch = useDispatch()
+  const rentals = useSelector(state => state.equipmentAndRentals.data.rentals)
+
   useEffect(() => {
-    fetchEquipmentTypesAndRentals()
+    dispatch(fetchEquipmentTypesAndRentals())
   }, [])
 
   return (
@@ -140,9 +141,7 @@ function LandingPage({rentals, fetchEquipmentTypesAndRentals}) {
           </h1>
           <div className='md:flex md:space-x-16'>
             <div className='overflow-auto h-128'>
-              <RentalProvider>
-                <RentalCardList />
-              </RentalProvider>
+              <RentalCardList />
             </div>
             <YMaps className='w-full'>
               <Map
@@ -183,31 +182,4 @@ function LandingPage({rentals, fetchEquipmentTypesAndRentals}) {
   )
 }
 
-LandingPage.propTypes = {
-  rentals: arrayOf(object),
-  fetchEquipmentTypesAndRentals: func
-}
-
-/**
- * Получение информации об успешном получении данных о группе
- * @param {object} state Состояние
- * @returns {object} Значения состояний
- */
-const rentalState = state => {
-  return {
-    rentals: state.equipmentAndRentals.data.rentals
-  }
-}
-
-/**
- * Установка исходных данных в состояние группы
- * @param {function} dispatch Запрос на установку
- * @returns {object} Функция установки
- */
-const rentalDispatch = dispatch => {
-  return {
-    fetchEquipmentTypesAndRentals: () => dispatch(fetchEquipmentTypesAndRentals())
-  }
-}
-
-export default connect(rentalState, rentalDispatch)(LandingPage)
+export default LandingPage
