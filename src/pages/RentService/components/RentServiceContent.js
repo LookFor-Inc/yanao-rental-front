@@ -50,22 +50,22 @@ function RentServiceContent() {
       {
         categories.map((equipmentType, idx) => (
           <>
-            <h1 className="text-xl text-gray-800 font-bold">
+            <h1 className='text-xl text-gray-800 font-bold'>
               {equipmentType.category}
             </h1>
-            <div className="grid grid-cols-4 gap-4">
+            <div className='grid grid-cols-4 gap-4'>
               {
                 equipmentType.list.map(item => (
-                  <Card className="p-4" key={idx}>
-                    <div className="md:flex-shrink-0">
-                      <img className="w-full object-cover h-full"
+                  <Card className='p-4' key={idx}>
+                    <div className='md:flex-shrink-0'>
+                      <img className='w-full object-cover h-full'
                            src={item.logo}
-                           alt={item.title}/>
+                           alt={item.title} />
                     </div>
-                    <p className="font-bold text-gray-800">
+                    <p className='font-bold text-gray-800'>
                       {item.title}
                     </p>
-                    <p className="text-sm font-medium text-gray-500">
+                    <p className='text-sm font-medium text-gray-500'>
                       {item.cost}
                     </p>
                   </Card>

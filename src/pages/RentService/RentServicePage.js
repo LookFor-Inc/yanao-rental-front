@@ -1,6 +1,5 @@
 import React from 'react'
 import Container from '@/components/Container'
-// eslint-disable-next-line import/namespace
 import RentServiceContent from '@/pages/RentService/components/RentServiceContent'
 import RentServiceHeader from '@/pages/RentService/components/RentServiceHeader'
 
@@ -9,8 +8,8 @@ function RentServicePage() {
     <div className='bg-gray-100'>
       <Container>
         <div>
-          <RentServiceHeader/>
-          <RentServiceContent/>
+          <RentServiceHeader />
+          <RentServiceContent />
         </div>
       </Container>
     </div>
