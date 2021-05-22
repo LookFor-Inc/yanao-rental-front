@@ -20,6 +20,7 @@ const Input = forwardRef(({
 }, ref) => {
   const classes = classNames('input', {
     'py-1.5 px-3 text-sm': size === 'sm',
+    'py-3.5 px-3 text-md': size === 'md',
     'placeholder-error border-error focus:ring-error focus:border-error': error
   }, className)
 
