@@ -12,6 +12,7 @@ import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
 import Container from '@/components/Container'
 import RentalCardList from '@/pages/Rental/components/RentalCardList'
+import withRentalsPage from '@/pages/Rental/withRentalsPage'
 import RentalProvider from '@/pages/RentService/components/RentalProvider'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
 
@@ -141,7 +142,7 @@ function LandingPage({rentals, fetchEquipmentTypesAndRentals}) {
           <div className='md:flex md:space-x-16'>
             <div className='overflow-auto h-128'>
               <RentalProvider>
-                <RentalCardList />
+                <RentalCardList search={false}/>
               </RentalProvider>
             </div>
             <YMaps className='w-full'>
@@ -210,4 +211,4 @@ const rentalDispatch = dispatch => {
   }
 }
 
-export default connect(rentalState, rentalDispatch)(LandingPage)
+export default withRentalsPage(connect(rentalState, rentalDispatch)(LandingPage))
