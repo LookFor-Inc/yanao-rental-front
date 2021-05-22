@@ -17,7 +17,7 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
     {({open}) => (
       <>
         <Popover.Button className={`${open ? '' : 'text-opacity-90'} text-primary hover:text-opacity-100`}>
-          <ListIcon className='h-9 w-9' />
+          <ListIcon className='h-6 w-6' />
         </Popover.Button>
         <Transition
           as={Fragment}
