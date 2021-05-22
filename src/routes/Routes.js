@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react'
+import React, {lazy, Suspense} from 'react'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
@@ -6,6 +6,7 @@ import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
+import ProfilePage from '@/pages/Profile/ProfilePage'
 import CheckEmailPage from '@/pages/Recovery/CheckEmailPage'
 import CompleteRecoveryPage from '@/pages/Recovery/CompleteRecoveryPage'
 import ConfirmRecoveryPage from '@/pages/Recovery/ConfirmRecoveryPage'
@@ -119,10 +120,19 @@ export default function Routes() {
               </PageLayout>
             </Switch>
           </CustomRoute>
+          <CustomRoute path={'/profile'}>
+            <PageLayout className='bg-gray-100'>
+              <CustomRoute
+                path='/profile'
+                title='Профиль'
+                component={ProfilePage}
+              />
+            </PageLayout>
+          </CustomRoute>
           <CustomRoute path={'/reservation'}>
             <PageLayout className='bg-gray-100'>
               <CustomRoute
-                path='/'
+                path='/reservation'
                 title='Оформление'
                 component={ReservationPage}
               />
