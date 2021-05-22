@@ -8,8 +8,6 @@ function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
   useEffect(() => {
     fetchEquipmentTypesAndRentals()
   }, [])
-
-
   return (
     <>
       <div className='mt-6 w-full'>
