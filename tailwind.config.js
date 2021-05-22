@@ -25,10 +25,19 @@ module.exports = {
     extend: {
       transitionProperty: {
         'height': 'height'
+      },
+      height: {
+        '128': '32rem'
       }
     }
   },
   plugins: [
     require('@tailwindcss/line-clamp')
-  ]
+  ],
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+      boxShadow: ['active']
+    }
+  }
 }

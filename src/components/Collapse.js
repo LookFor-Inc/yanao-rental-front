@@ -14,7 +14,7 @@ function Collapse({isOpen, children, ...props}) {
   const inlineStyle = isOpen ? {height: ref.current?.scrollHeight} : {height: 0}
   return (
     <div
-      className={className('mt-2 transition-height ease duration-300', {
+      className={className('transition-height ease duration-300', {
         'overflow-hidden': !isOpen
       }, props.className)}
       ref={ref}

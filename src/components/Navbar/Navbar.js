@@ -1,27 +1,25 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Button from '@/components/Button'
-import useScroll from '@/hooks/useScroll'
-import CartPopover from './components/CartPopover'
-import Logo from './components/Logo'
-import Mobile from './components/Mobile/Mobile'
-import NavTabList from './components/NavTabList'
+import CartPopover from '@/components/Navbar/components/CartPopover'
+import Logo from '@/components/Navbar/components/Logo'
+import Mobile from '@/components/Navbar/components/Mobile/Mobile'
+import NavTabList from '@/components/Navbar/components/NavTabList'
+import {logout} from '@/store/Auth/actions'
 
 /**
  * Компонент навигационного меню страницы
  * @param {boolean} transparent Прозрачность
+ * @param {boolean} isLoggedIn Авторизован ли пользователь
+ * @param {function} logout Функция для разлогинивания пользователя
  * @returns {JSX.Element} Навигационное меню сайта
  */
-function Navbar({transparent}) {
-  const [scrollY] = useScroll()
-  const [classes, setClasses] = useState()
-  useEffect(() => {
-    setClasses(classNames('z-40 sticky top-0 w-full relative transition duration-800', {
-      'border-b border-gray-150 bg-white': !transparent || scrollY > 10
-    }))
-  }, [scrollY])
+function Navbar({transparent, isLoggedIn, logout}) {
+  const classes = classNames('z-40 sticky top-0 w-full relative transition duration-800 bg-white',
+    'border-b border-gray-150')
 
   return (
     <nav className={classes}>
@@ -30,9 +28,14 @@ function Navbar({transparent}) {
         <NavTabList />
         <div className='hidden md:flex items-center justify-end md:flex-1 lg:w-0'>
           <CartPopover />
-          <Link to='/auth/login'>
-            <Button className='ml-12' size='sm' color='primary'>Войти</Button>
-          </Link>
+          {isLoggedIn
+            ? <Button size='sm' color='secondary' onClick={() => logout()}>
+              Выйти
+            </Button>
+            : <Link to='/auth/login'>
+              <Button size='sm' color='primary'>Войти</Button>
+            </Link>
+          }
         </div>
         <Mobile />
       </div>
@@ -41,7 +44,31 @@ function Navbar({transparent}) {
 }
 
 Navbar.propTypes = {
-  transparent: PropTypes.bool
+  transparent: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
+  logout: PropTypes.func
 }
 
-export default Navbar
+/**
+ * Получение состояния авторизации пользователя
+ * @param {object} state Состояние
+ * @returns {object} Значения состояний
+ */
+const authState = state => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
+
+/**
+ * Установка этажа в redux
+ * @param {function} dispatch Запрос на установку
+ * @returns {object} Функция установки
+ */
+const authDispatch = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
+
+export default connect(authState, authDispatch)(Navbar)
