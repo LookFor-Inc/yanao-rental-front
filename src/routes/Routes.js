@@ -149,11 +149,13 @@ export default function Routes() {
                     path='/profile'
                     title='Профиль'
                     component={ProfileContent}
+                    access={auth}
                   />
                   <CustomRoute
                     path='/profile/achievements'
                     title='Профиль'
                     component={Achievements}
+                    access={auth}
                   />
                 </ProfilePage>
               </PageLayout>
