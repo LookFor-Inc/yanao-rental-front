@@ -23,7 +23,6 @@ Frontend part of the app Indoor Schemes.
 - React
 - Redux
 - Tailwind CSS
-- D3.js
 
 ## Configuration
 

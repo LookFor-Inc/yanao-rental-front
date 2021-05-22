@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   purge: {
-    enabled: true,
+    enabled: false,
     content: [
       './src/**/*.{js,jsx,ts,tsx}',
       './public/index.html'
@@ -12,8 +12,8 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      primary: '#0057ff',
-      primaryDark: '#0046cc',
+      primary: '#FF6C1A',
+      primaryDark: '#E56117',
       error: '#ea0c00',
       errorDark: '#b91c1c',
       success: '#059669',
@@ -21,12 +21,23 @@ module.exports = {
     },
     fontFamily: {
       'sans': ['Inter', 'ui-sans-serif', 'system-ui']
+    },
+    extend: {
+      transitionProperty: {
+        'height': 'height'
+      },
+      height: {
+        '128': '32rem'
+      }
     }
-  },
-  variants: {
-    extend: {}
   },
   plugins: [
     require('@tailwindcss/line-clamp')
-  ]
+  ],
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+      boxShadow: ['active']
+    }
+  }
 }

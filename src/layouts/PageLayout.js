@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Footer from '../components/Footer/Footer'
+import Navbar from '../components/Navbar/Navbar'
 
 /**
  * Общий макет страницы
@@ -9,9 +11,9 @@ import PropTypes from 'prop-types'
 function PageLayout({children}) {
   return (
     <>
-      <p>Navbar</p>
+      <Navbar transparent />
       {children}
-      <p>Footer</p>
+      <Footer />
     </>
   )
 }
