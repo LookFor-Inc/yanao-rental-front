@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form'
 import {useHistory} from 'react-router-dom'
 import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
+import Checkbox from '@/components/Checkbox'
 import Divider from '@/components/Divider'
 import FormGroup from '@/components/FormGroup'
 import Input from '@/components/Input'
@@ -32,7 +33,8 @@ function RegistrationCard() {
    */
   const onSubmit = async data => {
     try {
-      const res = await registerUser('renter', data.email, data.password)
+      const role = data.business ? 'landlord' : 'renter'
+      const res = await registerUser(role, data.email, data.password)
       if (res.status === HttpStatus.OK) {
         history.push({
           pathname: '/auth/registration/check-email',
@@ -65,6 +67,10 @@ function RegistrationCard() {
             placeholder='•••••'
             error={errors.password_repeat}
             {...register('password_repeat', passwordRepeatValidator(password.current))}
+          />
+          <Checkbox
+            label='Я бизнес'
+            {...register('business')}
           />
           <FormGroup>
             <Button
