@@ -1,78 +1,192 @@
 import React from 'react'
 
+const rentalList = [
+  {
+    city: 'Новый Уренгой',
+    address: 'Адрес',
+    dateStart: '16 мар. 16:30',
+    equipmentList: [
+      {
+        name: 'Велосипед мужской',
+        amount: 1
+      },
+      {
+        name: 'Велосипед мужской',
+        amount: 1
+      }
+    ],
+    dateEnd: '17 мар. 17:30',
+    status: 'active',
+    score: '23',
+    cost: 8500
+  },
+  {
+    city: 'Ноябрьск',
+    address: 'ул. Космонавтов 13',
+    dateStart: '16 апр. 11:30',
+    dateEnd: '17 мар. 17:30',
+    equipmentList: [
+      {
+        name: 'Велосипед мужской',
+        amount: 1
+      },
+      {
+        name: 'Велосипед мужской',
+        amount: 1
+      }
+    ],
+    status: 'close',
+    score: '40',
+    cost: 10400
+  },
+  {
+    city: 'Салехард',
+    address: 'Адрес',
+    dateStart: '16 мар. 16:30',
+    dateEnd: '17 мар. 17:30',
+    equipmentList: [
+      {
+        name: 'Велосипед мужской',
+        amount: 2
+      },
+      {
+        name: 'Велосипед детский',
+        amount: 3
+      }
+    ],
+    status: 'close',
+    score: '23',
+    cost: 8500
+  },
+  {
+    city: 'Новый Уренгой',
+    address: 'Адрес',
+    dateStart: '16 мар. 16:30',
+    dateEnd: '17 мар. 17:30',
+    equipmentList: [
+      {
+        name: 'Ролики',
+        amount: 2
+      }
+    ],
+    status: 'close',
+    score: '23',
+    cost: 8500
+  },
+  {
+    city: 'Новый Уренгой',
+    address: 'Адрес',
+    dateStart: '16 мар. 16:30',
+    dateEnd: '17 мар. 17:30',
+    equipmentList: [
+      {
+        name: 'Самокат',
+        amount: 3
+      }
+    ],
+    status: 'close',
+    score: '23',
+    cost: 8500
+  }
+]
+
 function ProfileContent() {
   return (
-    <div className='flex flex-col'>
-      <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8'>
-          <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead className='bg-gray-50'>
-                <tr>
-                  <th scope='col'
-                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  Name
-                  </th>
-                  <th scope='col'
-                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  Title
-                  </th>
-                  <th scope='col'
-                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  Status
-                  </th>
-                  <th scope='col'
-                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  Role
-                  </th>
-                  <th scope='col' className='relative px-6 py-3'>
-                    <span className='sr-only'>Edit</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className='bg-white divide-y divide-gray-200'>
-                <tr>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <div className='flex items-center'>
-                      <div className='flex-shrink-0 h-10 w-10'>
-                        <img className='h-10 w-10 rounded-full'
-                             src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                             alt=''/>
-                      </div>
-                      <div className='ml-4'>
+    <>
+      <h1 className='text-2xl text-gray-800 font-bold mb-6'>
+      Поиск прокатов
+      </h1>
+      <div className='flex flex-col'>
+        <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+          <div className='py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8'>
+            <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
+              <table className='min-w-full divide-y divide-gray-200'>
+                <thead className='bg-gray-50'>
+                  <tr>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                  Место
+                    </th>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                  Начало
+                    </th>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                  Конец
+                    </th>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                  Оборудование
+                    </th>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                  Текущий статус
+                    </th>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Получено баллов
+                    </th>
+                    <th scope='col'
+                        className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                    Стоимость
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className='bg-white divide-y divide-gray-200'>
+                  {rentalList.map((rent, index) => (
+                    <tr key={index}>
+                      <td className='px-6 py-4 whitespace-nowrap'>
                         <div className='text-sm font-medium text-gray-900'>
-                        Jane Cooper
+                          {rent.city}
                         </div>
                         <div className='text-sm text-gray-500'>
-                        jane.cooper@example.com
+                          {rent.address}
                         </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <div className='text-sm text-gray-900'>Regional Paradigm Technician</div>
-                    <div className='text-sm text-gray-500'>Optimization</div>
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <span
-                  className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                  Active
-                    </span>
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                  Admin
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <a href='#' className='text-indigo-600 hover:text-indigo-900'>Edit</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                        {rent.dateStart}
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                        {rent.dateEnd}
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <ul className='list-disc text-sm font-medium text-gray-900'>
+                          {rent.equipmentList.map((equipment, index) => (
+                            <li key={index}>
+                              {equipment.name}
+                              {equipment.amount>1 ? ` (x${equipment.amount})` : ''}
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <span
+                      className={'px-2 inline-flex text-xs leading-5 font-semibold rounded-full ' +
+                      (rent.status === 'active' ? 'bg-green-100 text-green-600' : 'bg-indigo-100 text-gray-600')}>
+                          {rent.status === 'active' ? 'Активен' : 'Сдан'}
+                        </span>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <span
+                      className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-600'>
+                          {rent.score}
+                        </span>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='text-sm font-medium text-gray-900'>
+                          {rent.cost}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
