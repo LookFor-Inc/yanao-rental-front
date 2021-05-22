@@ -16,6 +16,7 @@ import RentalListPage from '@/pages/Rental/RentalListPage'
 import RentalMapPage from '@/pages/Rental/RentalMapPage'
 import RentServicePage from '@/pages/RentService/RentServicePage'
 import ReservationPage from '@/pages/Reservation/ReservationPage'
+import StatisticsPage from '@/pages/Statistics/StatisticsPage'
 import CustomRoute from '@/routes/CustomRoute'
 import PageLoading from '@/routes/PageLoading'
 import ScrollToTop from '@/routes/ScrollToTop'
@@ -125,6 +126,15 @@ export default function Routes() {
                 path='/'
                 title='Оформление'
                 component={ReservationPage}
+              />
+            </PageLayout>
+          </CustomRoute>
+          <CustomRoute path={'/statistics'}>
+            <PageLayout>
+              <CustomRoute
+                path='/'
+                title='Статистика'
+                component={StatisticsPage}
               />
             </PageLayout>
           </CustomRoute>
