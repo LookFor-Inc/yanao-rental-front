@@ -1,46 +1,27 @@
-import React, {useEffect, useState} from 'react'
-import {arrayOf, func, object} from 'prop-types'
-import {connect} from 'react-redux'
+import React from 'react'
 import {Circle, GeolocationControl, Map, YMaps} from 'react-yandex-maps'
-import {customersAmount} from '@/data/customersAmount'
-import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
+import {deliveryLocations} from '@/data/deliveryLocations'
 
-function CitiesMapChart({rentals, fetchEquipmentTypesAndRentals}) {
-  const [modernRentals, setModernRentals] = useState([])
-
-  useEffect(() => {
-    fetchEquipmentTypesAndRentals()
-  }, [])
-
-  useEffect(() => {
-    const nObj = []
-    rentals.forEach((item, idx) => {
-      item['customersAmount'] = customersAmount[idx]
-      nObj.push(item)
-    })
-    setModernRentals(nObj)
-    console.log(nObj)
-  }, [rentals])
-
+function CitiesMapChart() {
   return (
     <YMaps>
       <Map
         className='w-full h-128'
         defaultState={{
-          center: [66.49, 66.66],
-          zoom: 10,
+          center: [66.088513, 76.674562],
+          zoom: 12,
           controls: ['zoomControl', 'fullscreenControl']
         }}
         modules={['control.ZoomControl', 'control.FullscreenControl']}
       >
         <GeolocationControl options={{float: 'right'}}/>
         {
-          modernRentals.map(({id, latitude, longitude, name, address, customersAmount}) => {
+          deliveryLocations.map(({latitude, longitude, name, address, customersAmount}, id) => {
             const balloonTemplate = `
                   <div class='flex flex-col space-y-1 text-gray-800'>
                     <p class='font-semibold'>${name}</p>
                     <p>${address}</p>
-                    <p>Посетителей: ${customersAmount.amount}</p>
+                    <p>Доставок: ${customersAmount.amount}</p>
                   </div>
                 `
             return (
@@ -65,31 +46,5 @@ function CitiesMapChart({rentals, fetchEquipmentTypesAndRentals}) {
   )
 }
 
-CitiesMapChart.propTypes = {
-  rentals: arrayOf(object),
-  fetchEquipmentTypesAndRentals: func
-}
 
-/**
- * Получение информации об успешном получении данных о группе
- * @param {object} state Состояние
- * @returns {object} Значения состояний
- */
-const rentalState = state => {
-  return {
-    rentals: state.equipmentAndRentals.data.rentals
-  }
-}
-
-/**
- * Установка исходных данных в состояние группы
- * @param {function} dispatch Запрос на установку
- * @returns {object} Функция установки
- */
-const rentalDispatch = dispatch => {
-  return {
-    fetchEquipmentTypesAndRentals: () => dispatch(fetchEquipmentTypesAndRentals())
-  }
-}
-
-export default connect(rentalState, rentalDispatch)(CitiesMapChart)
+export default CitiesMapChart
