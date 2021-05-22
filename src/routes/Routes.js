@@ -1,6 +1,7 @@
 import React, {lazy, Suspense} from 'react'
 import {useSelector} from 'react-redux'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
+import {ADMIN} from '@/data/userTypes'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
 import RentalLayout from '@/layouts/RentalLayout'
@@ -31,6 +32,7 @@ import ScrollToTop from '@/routes/ScrollToTop'
  */
 export default function Routes() {
   const auth = useSelector(state => state.auth.isLoggedIn)
+  const userType = useSelector(state => state.user.type)
 
   return (
     <Suspense fallback={<PageLoading />}>
@@ -178,6 +180,7 @@ export default function Routes() {
                 path='/'
                 title='Статистика'
                 component={StatisticsPage}
+                access={userType === ADMIN}
               />
             </PageLayout>
           </CustomRoute>
