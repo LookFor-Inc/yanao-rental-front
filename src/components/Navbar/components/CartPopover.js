@@ -91,18 +91,18 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                 </span>
                 }
               </div>
-              <Button
-                className={classNames('ml-auto m-3', {
-                  'invisible': equipments.length === 0
-                })}
-                color='primary'
-                size='sm'
-                onClick={() => {
-                  history.push('/reservation')
-                }}
-              >
-                Забронировать
-              </Button>
+              {equipments.length !== 0 && (
+                <Button
+                  className={classNames('ml-auto m-3')}
+                  color='primary'
+                  size='sm'
+                  onClick={() => {
+                    history.push('/reservation')
+                  }}
+                >
+                  Забронировать
+                </Button>
+              )}
             </div>
           </Popover.Panel>
         </Transition>
