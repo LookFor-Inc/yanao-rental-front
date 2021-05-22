@@ -124,7 +124,7 @@ function LandingPage({rentals, fetchEquipmentTypesAndRentals}) {
               <div className='sm:w-1/2 mb-10 px-4'>
                 <div
                   className='w-20 h-20 inline-flex items-center justify-center text-primary'>
-                  <UsersIcon classNames='w-20 h-20' />
+                  <UsersIcon className='w-20 h-20' />
                 </div>
                 <h2 className='text-3xl font-bold text-gray-900 mt-6 mb-3'>1000</h2>
                 <p className='text-lg text-gray-600'>Активных пользователей</p>

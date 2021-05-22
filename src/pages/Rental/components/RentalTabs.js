@@ -7,7 +7,7 @@ import {useRentalTab} from '@/pages/Rental/components/RentalTabsProvider'
 function RentalTabs() {
   // eslint-disable-next-line no-unused-vars
   const {setTab, tab} = useRentalTab()
-  const btnClasses = tabParam => classNames('font-semibold text-md rounded-md py-0.5 px-1.5', {
+  const btnClasses = tabParam => classNames('font-semibold text-md rounded-md py-0.5 px-2', {
     'bg-white shadow': tabParam === tab
   })
 
