@@ -163,7 +163,7 @@ function LandingPage({rentals, fetchEquipmentTypesAndRentals}) {
                         <p class='font-semibold'>${name}</p>
                         <p>${address}</p>
                     <div>
-                    <a href='${id}' class='btn-primary rounded-md py-0.5 px-1 mt-1'>Перейти</a>
+                    <a href='/rental/${id}' class='btn-primary rounded-md py-0.5 px-1 mt-1'>Перейти</a>
                   </div>
                 `
                     return (<Placemark

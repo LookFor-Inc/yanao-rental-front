@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {useHistory} from 'react-router-dom'
@@ -91,7 +92,9 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                 }
               </div>
               <Button
-                className='ml-auto m-3'
+                className={classNames('ml-auto m-3', {
+                  'invisible': equipments.length === 0
+                })}
                 color='primary'
                 size='sm'
                 onClick={() => {
