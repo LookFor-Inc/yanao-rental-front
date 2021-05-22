@@ -4,13 +4,30 @@ import {citiesChartData} from '@/data/citiesChart'
 
 const options = {
   scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true
+    x: {
+      title: {
+        color: '#27272A',
+        display: true,
+        text: 'Месяцы',
+        font: {
+          size: 18,
+          family: 'Inter',
+          weight: '600'
         }
       }
-    ]
+    },
+    y: {
+      title: {
+        color: '#27272A',
+        display: true,
+        text: 'Жители',
+        font: {
+          size: 18,
+          family: 'Inter',
+          weight: '600'
+        }
+      }
+    }
   }
 }
 
