@@ -1,11 +1,11 @@
 import React from 'react'
 import Container from '@/components/Container'
-import ReservationChoiceList from '@/pages/Reservation/components/ReservationChoiceList'
+import ReservationEquipments from '@/pages/Reservation/components/ReservationEquipments'
 
 function ReservationPage() {
   return (
     <Container>
-      <ReservationChoiceList />
+      <ReservationEquipments />
     </Container>
   )
 }

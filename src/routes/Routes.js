@@ -116,7 +116,7 @@ export default function Routes() {
             </Switch>
           </CustomRoute>
           <CustomRoute path={'/reservation'}>
-            <PageLayout>
+            <PageLayout className='bg-gray-100'>
               <CustomRoute
                 path='/'
                 title='Оформление'
