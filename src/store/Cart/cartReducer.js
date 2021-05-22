@@ -1,34 +1,10 @@
 import {
-  ADD_EQUIPMENT_TO_CART,
-  DECREASE_EQUIPMENT_AMOUNT,
-  INCREASE_EQUIPMENT_AMOUNT,
-  REMOVE_EQUIPMENT_FROM_CART
+  ADD_EQUIPMENT_TO_CART, REMOVE_EQUIPMENT_FROM_CART,
+  INCREASE_EQUIPMENT_AMOUNT, DECREASE_EQUIPMENT_AMOUNT
 } from '../types'
 
-const url =
-  'https://i.shgcdn.com/fda42618-5f0b-41db-b64a-0e270df24194/-/format/auto/-/preview/3000x3000/-/quality/lighter/'
-
 const initialState = {
-  equipments: [
-    {
-      id: 1,
-      name: 'Велосипед STELS',
-      img: url,
-      amount: 2
-    },
-    {
-      id: 2,
-      name: 'Велосипед Trek',
-      img: url,
-      amount: 1
-    },
-    {
-      id: 3,
-      name: 'Велосипед STERN',
-      img: url,
-      amount: 5
-    }
-  ]
+  equipments: []
 }
 
 /**
@@ -41,6 +17,7 @@ export default (state = initialState, action) => {
   const payload = action.payload
   switch (action.type) {
     case ADD_EQUIPMENT_TO_CART:
+      payload.equipment.amount = 1
       return {
         ...state,
         equipments: [...state.equipments, payload.equipment]

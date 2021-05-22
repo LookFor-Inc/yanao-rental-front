@@ -19,9 +19,7 @@ export default function Routes() {
       <Router>
         <ScrollToTop />
         <Switch>
-          <CustomRoute
-            path={'/auth/:path?'}
-          >
+          <CustomRoute path={'/auth/:path?'}>
             <EmptyLayout>
               <Switch>
                 <CustomRoute
@@ -76,29 +74,35 @@ export default function Routes() {
               </Switch>
             </EmptyLayout>
           </CustomRoute>
-          <CustomRoute
-            path={'/rental/:path?'}
-          >
-            <RentalLayout>
-              <Switch>
+          <CustomRoute path={'/rental/:path?'}>
+            <Switch>
+              <RentalLayout
+                exact
+                path={['/rental/list', '/rental/map']}
+              >
+                <Switch>
+                  <CustomRoute
+                      exact
+                      path='/rental/list'
+                      title='Список прокатов'
+                      component={lazy(() => import('@/pages/Rental/RentalListPage'))}
+                  />
+                  <CustomRoute
+                    exact
+                    path='/rental/map'
+                    title='Карта прокатов'
+                    component={lazy(() => import('@/pages/Rental/RentalMapPage'))}
+                  />
+                </Switch>
+              </RentalLayout>
+              <PageLayout>
                 <CustomRoute
-                  path='/rental/list'
-                  title='Список прокатов'
-                  component={lazy(() => import('@/pages/Rental/RentalListPage'))}
+                path='/rental/:rentServiceId'
+                title='Страница проката'
+                component={lazy(() => import('@/pages/RentService/RentServicePage'))}
                 />
-                <CustomRoute
-                  exact
-                  path='/rental/map'
-                  title='Карта прокатов'
-                  component={lazy(() => import('@/pages/Rental/RentalMapPage'))}
-                />
-                <CustomRoute
-                  path='*'
-                  title='Страница не найдена'
-                  component={NotFoundPage}
-                />
-              </Switch>
-            </RentalLayout>
+              </PageLayout>
+            </Switch>
           </CustomRoute>
           <CustomRoute path='/'>
             <PageLayout>
@@ -107,8 +111,7 @@ export default function Routes() {
                   exact
                   path='/'
                   title='Главная страница'
-                  component={lazy(() => import('@/pages/RentService/RentServicePage'))}
-                  // component={lazy(() => import('@/pages/Landing/LandingPage'))}
+                  component={lazy(() => import('@/pages/Landing/LandingPage'))}
                 />
                 <CustomRoute
                   exact

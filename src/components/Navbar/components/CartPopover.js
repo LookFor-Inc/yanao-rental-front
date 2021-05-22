@@ -10,7 +10,7 @@ import Button from '@/components/Button'
 import {decreaseEquipmentAmount, increaseEquipmentAmount, removeEquipmentFromCart} from '@/store/Cart/actions'
 
 function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmount, removeEquipmentFromCart}) {
-  return <Popover className='flex'>
+  return <Popover className='flex mr-12'>
     {({open}) => (
       <>
         <Popover.Button className={`${open ? '' : 'text-opacity-90'} text-primary hover:text-opacity-100`}>
@@ -38,9 +38,12 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                     className='flex justify-between items-center p-2 -m-3'
                   >
                     <div className='flex items-center space-x-6'>
-                      <img className='flex w-16 justify-start'
-                           src={equipment.img}
-                           alt={equipment.name} />
+                      <div className='flex justify-center w-16'>
+                        <img className='h-16'
+                             src={equipment.img}
+                             alt={`${equipment.name} img`}
+                        />
+                      </div>
                       <span className='flex text-sm font-medium text-gray-900'>
                         {equipment.name}
                       </span>
@@ -86,7 +89,7 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                 </span>
                 }
               </div>
-              <Button className='ml-auto m-4' color='primary' size='sm'>
+              <Button className='ml-auto m-3' color='primary' size='sm'>
                 Забронировать
               </Button>
             </div>
@@ -98,7 +101,7 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
 }
 
 CartPopover.propTypes = {
-  equipments: PropTypes.object,
+  equipments: PropTypes.arrayOf(PropTypes.object),
   increaseEquipmentAmount: PropTypes.func,
   decreaseEquipmentAmount: PropTypes.func,
   removeEquipmentFromCart: PropTypes.func

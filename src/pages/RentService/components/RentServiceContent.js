@@ -1,155 +1,65 @@
-import React, {useState} from 'react'
-import AvailableIcon from '@/assets/icons/AvailableIcon'
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
+import {addEquipmentToCart} from '@/store/Cart/actions'
 
-const categories = [
-  {
-    category: 'Велосипеды',
-    list: [
-      {
-        id: 0,
-        title: 'Велосипед',
-        logo: 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQvMrc5ndh1Zt_zpCEbA7dI6cj852fLC8wECxzrtZ8SojYM' +
-          'MG7ei7LDppIBwcjuHoiLzLdZqJIT4umq5UxMOX0',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 1,
-        title: 'Велосипед',
-        logo: 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQvMrc5ndh1Zt_zpCEbA7dI6cj852fLC8wECxzrtZ8SojYM' +
-          'MG7ei7LDppIBwcjuHoiLzLdZqJIT4umq5UxMOX0',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 2,
-        title: 'Велосипед',
-        logo: 'https://www.velopiter.ru/vlp/cache/preview/crop700500/d2d/d2d0ccf3756531da39bdeb80f545975e.jpg',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 3,
-        title: 'Велосипед',
-        logo: 'https://klv-oboi.ru/img/gallery/60/thumbs/thumb_l_27668.jpg',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 4,
-        title: 'Велосипед',
-        logo: 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQvMrc5ndh1Zt_zpCEbA7dI6cj852fLC8wECxzrtZ8SojYM' +
-          'MG7ei7LDppIBwcjuHoiLzLdZqJIT4umq5UxMOX0',
-        cost: '1000 p/час',
-        amount: 2
-      }
-    ]
-  },
-  {
-    category: 'Самокаты',
-    list: [
-      {
-        id: 0,
-        title: 'Велосипед',
-        logo: 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQvMrc5ndh1Zt_zpCEbA7dI6cj852fLC8wECxzrtZ8SojYM' +
-          'MG7ei7LDppIBwcjuHoiLzLdZqJIT4umq5UxMOX0',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 1,
-        title: 'Велосипед',
-        logo: 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQvMrc5ndh1Zt_zpCEbA7dI6cj852fLC8wECxzrtZ8SojYM' +
-          'MG7ei7LDppIBwcjuHoiLzLdZqJIT4umq5UxMOX0',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 2,
-        title: 'Велосипед',
-        logo: 'https://www.velopiter.ru/vlp/cache/preview/crop700500/d2d/d2d0ccf3756531da39bdeb80f545975e.jpg',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 3,
-        title: 'Велосипед',
-        logo: 'https://klv-oboi.ru/img/gallery/60/thumbs/thumb_l_27668.jpg',
-        cost: '1000 p/час',
-        amount: 2,
-        booking: 0
-      },
-      {
-        id: 4,
-        title: 'Велосипед',
-        logo: 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQvMrc5ndh1Zt_zpCEbA7dI6cj852fLC8wECxzrtZ8SojYM' +
-          'MG7ei7LDppIBwcjuHoiLzLdZqJIT4umq5UxMOX0',
-        cost: '1000 p/час',
-        amount: 2
-      }
-    ]
-  }
-]
-
-function RentServiceContent() {
-  const [buttonText, setButtonText] = useState('Забронировано')
+function RentServiceContent({rentService, equipments, addEquipmentToCart}) {
+  const {categories} = rentService
+  /**
+   * Проверка на наличие оборудования в корзине
+   * @param {string} equipmentId Идентификатор оборудования
+   * @returns {boolean} Находится ли в корзине
+   */
+  const isEquipmentRent = equipmentId =>
+    !!equipments.find(({id}) => id === equipmentId)
   return (
     <div>
-      {categories.map((equipmentType, idx) => (
-        <div className='mt-12' key={idx}>
+      {Object.entries(categories).map(([categoryName, equipments], id) => (
+        <div className='mt-12' key={id}>
           <h1 className='text-2xl text-gray-800 font-bold mb-6'>
-            {equipmentType.category}
+            {categoryName}
           </h1>
           <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4'>
-            {equipmentType.list.map(item => (
-              <Card key={idx}>
-                <div className='md:flex-shrink-0'>
+            {equipments.map((equipment, idx) => (
+              <Card
+                key={idx}
+                className='flex flex-col justify-between'
+              >
+                <div className='flex items-center justify-center'>
                   <img
-                    className='w-full md:h-40 sm:h-48 h-52sm:h-object-cover'
-                    src={item.logo}
-                    alt={item.title}
+                    className='w-52 p-2'
+                    src={equipment.img}
+                    alt={`${equipment.name} img`}
                   />
                 </div>
                 <div className='p-4'>
-                  <p className='font-bold text-gray-800'>
-                    {item.title}
-                  </p>
-                  <p className='text-sm font-medium text-gray-500 mb-1.5'>
-                    {item.cost}
-                  </p>
-                  <div className='flex items-center'>
-                    <AvailableIcon className='mr-1.5' />
-                    <p className='text-xl font-bold text-green-700'>
-                      {item.amount}
+                  <div className='flex justify-between'>
+                    <div className='flex flex-col'>
+                      <p className='font-bold text-gray-800'>
+                        {equipment.name}
+                      </p>
+                      <p className='text-sm font-medium text-gray-500 mb-1.5'>
+                        900 pуб./ч.
+                      </p>
+                    </div>
+                    <p className='text-xl font-semibold text-green-700'>
+                      ~{equipment.totalCount}
                     </p>
                   </div>
-                  {item.id !== 3 &&
                   <Button
                     size='sm'
                     className='w-full'
-                    color='secondary'
+                    color={!isEquipmentRent(equipment.id) ? 'secondary' : 'primary'}
+                    onClick={() => {
+                      if (!isEquipmentRent(equipment.id)) {
+                        addEquipmentToCart(equipment)
+                      }
+                    }}
                   >
-                    Забронировать
-                  </Button>}
-                  {item.id === 3 &&
-                  <Button
-                    size='sm'
-                    className='w-full'
-                    color='primary'
-                    onMouseOver={() => setButtonText('Перейти к заказу')}
-                    onMouseLeave={() => setButtonText('Забронировано')}
-                  >
-                    {buttonText}
-                  </Button>}
+                    {!isEquipmentRent(equipment.id) ? 'Забронировать' : 'В корзину'}
+                  </Button>
                 </div>
               </Card>
             ))}
@@ -160,4 +70,32 @@ function RentServiceContent() {
   )
 }
 
-export default RentServiceContent
+RentServiceContent.propTypes = {
+  rentService: PropTypes.object,
+  equipments: PropTypes.arrayOf(PropTypes.object),
+  addEquipmentToCart: PropTypes.func
+}
+
+/**
+ * Получение информации об оборудованиях в корзине
+ * @param {object} state Состояние
+ * @returns {object} Значения состояний
+ */
+const rentServiceState = state => {
+  return {
+    equipments: state.cart.equipments
+  }
+}
+
+/**
+ * Методы для получения информации об оборудованиях в корзине
+ * @param {function} dispatch Запрос
+ * @returns {object} Функция установки
+ */
+const rentServiceDispatch = dispatch => {
+  return {
+    addEquipmentToCart: equipment => dispatch(addEquipmentToCart(equipment))
+  }
+}
+
+export default connect(rentServiceState, rentServiceDispatch)(RentServiceContent)
