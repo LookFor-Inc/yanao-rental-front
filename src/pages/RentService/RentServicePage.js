@@ -7,10 +7,8 @@ function RentServicePage() {
   return (
     <div className='bg-gray-100'>
       <Container>
-        <div>
-          <RentServiceHeader />
-          <RentServiceContent />
-        </div>
+        <RentServiceHeader />
+        <RentServiceContent />
       </Container>
     </div>
   )
