@@ -7,6 +7,8 @@ import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
+import Achievements from '@/pages/Profile/components/Achievements'
+import ProfileContent from '@/pages/Profile/components/ProfileContent'
 import ProfilePage from '@/pages/Profile/ProfilePage'
 import CheckEmailPage from '@/pages/Recovery/CheckEmailPage'
 import CompleteRecoveryPage from '@/pages/Recovery/CompleteRecoveryPage'
@@ -138,14 +140,24 @@ export default function Routes() {
               </PageLayout>
             </Switch>
           </CustomRoute>
-          <CustomRoute path={'/profile'}>
-            <PageLayout className='bg-gray-100'>
-              <CustomRoute
-                path='/profile'
-                title='Профиль'
-                component={ProfilePage}
-              />
-            </PageLayout>
+          <CustomRoute path={'/profile/:path?'}>
+            <Switch>
+              <PageLayout className='bg-gray-100'>
+                <ProfilePage className='bg-white'>
+                  <CustomRoute
+                    exact
+                    path='/profile'
+                    title='Профиль'
+                    component={ProfileContent}
+                  />
+                  <CustomRoute
+                    path='/profile/achievements'
+                    title='Профиль'
+                    component={Achievements}
+                  />
+                </ProfilePage>
+              </PageLayout>
+            </Switch>
           </CustomRoute>
           <CustomRoute path={'/reservation'}>
             <PageLayout className='bg-gray-100'>

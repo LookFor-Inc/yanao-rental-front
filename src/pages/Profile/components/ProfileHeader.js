@@ -34,7 +34,10 @@ function ProfileHeader({user}) {
             </div>
           </div>
           <div className='flex'>
-            <span className='text-2xl font-bold mr-2 mt-1'>
+            <span className='hidden md:block text-2xl font-bold mr-2 mt-1'>
+              Баллов: 170
+            </span>
+            <span className='block md:hidden text-2xl font-bold mr-2 mt-1'>
               170
             </span>
             <CoinIcon className='h-10 w-10' />
