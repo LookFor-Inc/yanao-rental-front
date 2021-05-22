@@ -13,7 +13,7 @@ import {decreaseEquipmentAmount, increaseEquipmentAmount, removeEquipmentFromCar
 
 function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmount, removeEquipmentFromCart}) {
   const history = useHistory()
-  return <Popover className='flex mr-12'>
+  return <Popover className='flex mr-6'>
     {({open}) => (
       <>
         <Popover.Button className={`${open ? '' : 'text-opacity-90'} text-primary hover:text-opacity-100`}>
