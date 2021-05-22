@@ -7,6 +7,7 @@ import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
+import ProfilePage from '@/pages/Profile/ProfilePage'
 import CheckEmailPage from '@/pages/Recovery/CheckEmailPage'
 import CompleteRecoveryPage from '@/pages/Recovery/CompleteRecoveryPage'
 import ConfirmRecoveryPage from '@/pages/Recovery/ConfirmRecoveryPage'
@@ -136,6 +137,15 @@ export default function Routes() {
                 />
               </PageLayout>
             </Switch>
+          </CustomRoute>
+          <CustomRoute path={'/profile'}>
+            <PageLayout className='bg-gray-100'>
+              <CustomRoute
+                path='/profile'
+                title='Профиль'
+                component={ProfilePage}
+              />
+            </PageLayout>
           </CustomRoute>
           <CustomRoute path={'/reservation'}>
             <PageLayout className='bg-gray-100'>
