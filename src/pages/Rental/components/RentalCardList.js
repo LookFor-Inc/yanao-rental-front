@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import RentalCard from '@/pages/Rental/components/RentalCard'
-import {useRental} from '@/pages/RentService/components/RentalProvider'
+import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
 
 function RentalCardList() {
-  const {rentals} = useRental()
+  const dispatch = useDispatch()
+  const rentals = useSelector(state => state.equipmentAndRentals.data.rentals)
+
+  useEffect(() => {
+    dispatch(fetchEquipmentTypesAndRentals())
+  }, [])
 
   return (
     <div role='presentation'>

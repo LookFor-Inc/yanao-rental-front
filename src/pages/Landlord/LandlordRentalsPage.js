@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
+import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
 import Container from '@/components/Container'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
@@ -16,13 +17,20 @@ function LandlordRentalsPage() {
   return (
     <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen'>
       <Container>
-        <h1 className='text-4xl text-gray-800 font-bold my-8'>
+        <div className='flex justify-between my-8'>
+          <h1 className='text-4xl text-gray-800 font-bold'>
           Список ваших прокатов
-        </h1>
-        {rentals.map(r => r.id === 3 && (
-          <Card className='transition transform p-6 mb-6 rounded-lg shadow-md
+          </h1>
+          <Link
+            to='/landlord/add'
+          >
+            <Button color='primary'>Добавить прокат</Button>
+          </Link>
+        </div>
+        {rentals.map(r => (r.id === 3 || r.id === 5) && (
+          <Card key={r.id} className='transition transform p-6 mb-6 rounded-lg shadow-md
       cursor-pointer flex focus:outline-none bg-white'>
-            <Link to={`/rental/${r.id}`} key={r.id}
+            <Link to={`/landlord/rental/${r.id}/settings`} key={r.id}
                   className='w-full'>
               <div>
                 <div className='flex items-center justify-between w-full space-x-4'>

@@ -5,7 +5,15 @@ import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
 import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
+// eslint-disable-next-line no-unused-vars
+import RentalEquipments from '@/pages/Landlord/components/RentalEquipments'
+// eslint-disable-next-line no-unused-vars
+import RentalReservations from '@/pages/Landlord/components/RentalReservations'
+// eslint-disable-next-line no-unused-vars
+import RentalSettings from '@/pages/Landlord/components/RentalSettings'
 import LandlordAddRentalsPage from '@/pages/Landlord/LandlordAddRentalsPage'
+// eslint-disable-next-line no-unused-vars
+import LandlordRentalPage from '@/pages/Landlord/LandlordRentalPage'
 import LandlordRentalsPage from '@/pages/Landlord/LandlordRentalsPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
@@ -145,18 +153,47 @@ export default function Routes() {
           <CustomRoute path={'/landlord'}>
             <Switch>
               <PageLayout className='bg-gray-100'>
-                <CustomRoute
-                  exact
-                  path='/landlord'
-                  title='Список прокатов'
-                  component={LandlordRentalsPage}
-                />
-                <CustomRoute
-                  exact
-                  path='/landlord/add'
-                  title='Добавление нового проката'
-                  component={LandlordAddRentalsPage}
-                />
+                <Switch>
+                  <CustomRoute
+                    exact
+                    path='/landlord'
+                    title='Список прокатов'
+                    component={LandlordRentalsPage}
+                  />
+                  <CustomRoute
+                    exact
+                    path='/landlord/add'
+                    title='Добавление нового проката'
+                    component={LandlordAddRentalsPage}
+                  />
+                  <CustomRoute
+                    path='/landlord/rental/:path?'
+                    title='Панель управления проката'
+                  >
+                    <Switch>
+                      <LandlordRentalPage>
+                        <Switch>
+                          <CustomRoute
+                            exact
+                            path={['/landlord/rental/:rentServiceId', '/landlord/rental/:rentServiceId/settings']}
+                            title='Настройка проката2'
+                            component={RentalSettings}
+                          />
+                          <CustomRoute
+                            path='/landlord/rental/:rentServiceId/equipments'
+                            title='Оборудование проката'
+                            component={RentalEquipments}
+                          />
+                          <CustomRoute
+                            path='/landlord/rental/:rentServiceId/reservations'
+                            title='Брони проката'
+                            component={RentalReservations}
+                          />
+                        </Switch>
+                      </LandlordRentalPage>
+                    </Switch>
+                  </CustomRoute>
+                </Switch>
               </PageLayout>
             </Switch>
           </CustomRoute>
@@ -164,19 +201,21 @@ export default function Routes() {
             <Switch>
               <PageLayout className='bg-gray-100'>
                 <ProfilePage className='bg-white'>
-                  <CustomRoute
-                    exact
-                    path='/profile'
-                    title='Профиль'
-                    component={ProfileContent}
-                    access={auth}
-                  />
-                  <CustomRoute
-                    path='/profile/achievements'
-                    title='Профиль'
-                    component={Achievements}
-                    access={auth}
-                  />
+                  <Switch>
+                    <CustomRoute
+                      exact
+                      path='/profile'
+                      title='Профиль'
+                      component={ProfileContent}
+                      access={auth}
+                    />
+                    <CustomRoute
+                      path='/profile/achievements'
+                      title='Профиль'
+                      component={Achievements}
+                      access={auth}
+                    />
+                  </Switch>
                 </ProfilePage>
               </PageLayout>
             </Switch>

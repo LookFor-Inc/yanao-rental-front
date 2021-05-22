@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import ChevronLeftIcon from '@/assets/icons/Chevron/ChevronLeftIcon'
 import Card from '@/components/Card/Card'
 import Container from '@/components/Container'
 
@@ -6,9 +8,14 @@ function LandlordAddRentalsPage() {
   return (
     <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen'>
       <Container>
-        <h1 className='text-4xl text-gray-800 font-bold my-8'>
+        <div className='flex space-x-4 items-center'>
+          <Link to='/landlord'>
+            <ChevronLeftIcon className='w-10 h-10' />
+          </Link>
+          <h1 className='text-4xl text-gray-800 font-bold my-8'>
           Добавление нового проката
-        </h1>
+          </h1>
+        </div>
         <Card>
           <Card.Body>
             <div className='grid grid-cols-3 gap-6'>
