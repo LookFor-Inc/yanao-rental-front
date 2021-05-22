@@ -12,7 +12,7 @@ function Footer({entire}) {
       <div className='container mx-auto'>
         {entire && <FooterLinkList />}
         <div className='text-sm text-center text-gray-400'>
-          &copy; 2021 LookFor, Inc. Все права защищены.
+          &copy; 2021 ЯНАО шеринг. Все права защищены.
         </div>
       </div>
     </footer>
