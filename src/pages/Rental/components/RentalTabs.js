@@ -6,7 +6,7 @@ function RentalTabs() {
   const [tab, setTab] = useState('list')
 
   const btnClasses = tabParam => classNames(
-    'p-4 font-semibold text-md rounded-md',
+    'font-semibold text-md rounded-md py-0.5 px-1.5 text-xs',
     {
       'bg-white shadow': tabParam === tab
     }
