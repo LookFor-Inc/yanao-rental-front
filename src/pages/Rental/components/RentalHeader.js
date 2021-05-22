@@ -17,7 +17,7 @@ function RentalHeader({...props}) {
         <h1 className='text-4xl text-gray-800 font-bold'>
           Поиск прокатов
         </h1>
-        <RentalTabs/>
+        <RentalTabs />
       </div>
       <form className='flex space-x-3 w-full'>
         <Input

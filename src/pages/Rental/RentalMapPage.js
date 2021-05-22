@@ -11,8 +11,6 @@ function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
     dispatch(setOpenedRentalTab('/rental/map'))
     fetchEquipmentTypesAndRentals()
   }, [])
-
-
   return (
     <>
       <div className='mt-6 w-full'>
