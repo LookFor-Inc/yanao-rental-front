@@ -3,6 +3,7 @@ import {RadioGroup} from '@headlessui/react'
 import classNames from 'classnames'
 import {string} from 'prop-types'
 import CheckIcon from '@/assets/icons/CheckIcon'
+import CoinIcon from '@/assets/icons/CoinIcon'
 import CreditCardIcon from '@/assets/icons/CreditCardIcon'
 import MoneyIcon from '@/assets/icons/MoneyIcon'
 import Card from '@/components/Card/Card'
@@ -16,6 +17,10 @@ const paymentMethod = [
   {
     name: 'Наличными',
     icon: <MoneyIcon />
+  },
+  {
+    name: 'Баллами',
+    icon: <CoinIcon />
   }
 ]
 
@@ -67,7 +72,7 @@ function PaymentProcessingCard({...props}) {
       <div className='w-full'>
         <h1 className='text-md text-gray-800 font-semibold'>Способ оплаты</h1>
         <RadioGroup
-          className='flex flex-wrap flex-col space-y-4 mt-10'
+          className='flex flex-wrap flex-col space-y-4 mt-2'
           value={selected}
           onChange={setSelected}
         >

@@ -24,14 +24,17 @@ function ProfileMenu() {
         <>
           <div>
             <Menu.Button
-              className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2
-              focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
+              className='max-w-xs bg-gray-200 rounded-full flex items-center text-sm focus:outline-none focus:ring-2
+              focus:ring-offset-2 focus:ring-offset-gray-400 focus:ring-white'>
               <span className='sr-only'>Открыть меню</span>
               <img
                 className='h-9 w-9 rounded-full'
                 src={userData.avatar}
                 alt=''
               />
+              <div className='p-2 font-medium'>
+                {userData.email}
+              </div>
             </Menu.Button>
           </div>
           <Transition
@@ -50,7 +53,7 @@ function ProfileMenu() {
               ring-black ring-opacity-5 focus:outline-none'
             >
               {ITEMS.map(item => (
-                <Menu.Item key={item}>
+                <Menu.Item key={item.name}>
                   {({active}) => (
                     <Link
                       to={item.to}
@@ -64,6 +67,9 @@ function ProfileMenu() {
                   )}
                 </Menu.Item>
               ))}
+              <div className='pl-4 pr-4 pt-2 pb-2 text-sm text-gray-400'>
+                У вас 170 баллов
+              </div>
             </Menu.Items>
           </Transition>
         </>

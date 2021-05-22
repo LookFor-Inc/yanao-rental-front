@@ -1,4 +1,5 @@
-import React, {Suspense, lazy} from 'react'
+import React, {lazy, Suspense} from 'react'
+import {useSelector} from 'react-redux'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
@@ -6,6 +7,9 @@ import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
+import Achievements from '@/pages/Profile/components/Achievements'
+import ProfileContent from '@/pages/Profile/components/ProfileContent'
+import ProfilePage from '@/pages/Profile/ProfilePage'
 import CheckEmailPage from '@/pages/Recovery/CheckEmailPage'
 import CompleteRecoveryPage from '@/pages/Recovery/CompleteRecoveryPage'
 import ConfirmRecoveryPage from '@/pages/Recovery/ConfirmRecoveryPage'
@@ -26,6 +30,8 @@ import ScrollToTop from '@/routes/ScrollToTop'
  * @returns {JSX.Element} Возможные пути
  */
 export default function Routes() {
+  const auth = useSelector(state => state.auth.isLoggedIn)
+
   return (
     <Suspense fallback={<PageLoading />}>
       <Router>
@@ -38,45 +44,59 @@ export default function Routes() {
                   path='/auth/login'
                   title='Авторизация'
                   component={LoginPage}
+                  access={!auth}
+                />
+                <CustomRoute
+                  path='/auth/logout'
+                  title='Выход из аккаунта'
+                  component={lazy(() => import('@/pages/Login/LogoutCallback'))}
+                  access={auth}
                 />
                 <CustomRoute
                   exact
                   path='/auth/registration'
                   title='Регистрация'
                   component={RegistrationPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   path='/auth/registration/check-email'
                   title='Подтвердите email | Регистрация'
                   component={CheckEmailPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   path='/auth/registration/confirm'
                   title='Подтверждение email | Регистрация'
                   component={ConfirmEmailPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   exact
                   path='/auth/recovery'
                   title='Восстановление пароля'
                   component={RecoveryPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   path='/auth/recovery/check-email'
                   title='Восстановление пароля'
                   component={CheckEmailPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   exact
                   path='/auth/recovery/confirm'
                   title='Установка нового пароля'
                   component={ConfirmRecoveryPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   exact
                   path='/auth/recovery/confirm/complete'
                   title='Установка нового пароля'
                   component={CompleteRecoveryPage}
+                  access={!auth}
                 />
                 <CustomRoute
                   path='/auth/oauth2/callback'
@@ -86,6 +106,7 @@ export default function Routes() {
                   path='*'
                   title='Страница не найдена'
                   component={NotFoundPage}
+                  access={!auth}
                 />
               </Switch>
             </EmptyLayout>
@@ -120,12 +141,34 @@ export default function Routes() {
               </PageLayout>
             </Switch>
           </CustomRoute>
+          <CustomRoute path={'/profile/:path?'}>
+            <Switch>
+              <PageLayout className='bg-gray-100'>
+                <ProfilePage className='bg-white'>
+                  <CustomRoute
+                    exact
+                    path='/profile'
+                    title='Профиль'
+                    component={ProfileContent}
+                    access={auth}
+                  />
+                  <CustomRoute
+                    path='/profile/achievements'
+                    title='Профиль'
+                    component={Achievements}
+                    access={auth}
+                  />
+                </ProfilePage>
+              </PageLayout>
+            </Switch>
+          </CustomRoute>
           <CustomRoute path={'/reservation'}>
             <PageLayout className='bg-gray-100'>
               <CustomRoute
-                path='/'
+                path='/reservation'
                 title='Оформление'
                 component={ReservationPage}
+                access={auth}
               />
             </PageLayout>
           </CustomRoute>

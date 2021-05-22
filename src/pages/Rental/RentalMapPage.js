@@ -1,16 +1,19 @@
 import React, {useEffect} from 'react'
 import {arrayOf, func, object} from 'prop-types'
-import {connect, useDispatch} from 'react-redux'
+import {connect} from 'react-redux'
 import {GeolocationControl, Map, Placemark, YMaps} from 'react-yandex-maps'
+import {rentalMapTab} from '@/data/rentalListTabs'
+import {useRentalTab} from '@/pages/Rental/components/RentalTabsProvider'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
-import {setOpenedRentalTab} from '@/store/Rental/actions'
 
 function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
-  const dispatch = useDispatch()
+  const {setTab} = useRentalTab()
+
   useEffect(() => {
-    dispatch(setOpenedRentalTab('/rental/map'))
+    setTab(rentalMapTab)
     fetchEquipmentTypesAndRentals()
   }, [])
+
   return (
     <>
       <div className='mt-6 w-full'>

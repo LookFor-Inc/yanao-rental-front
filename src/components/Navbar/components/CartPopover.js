@@ -13,11 +13,11 @@ import {decreaseEquipmentAmount, increaseEquipmentAmount, removeEquipmentFromCar
 
 function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmount, removeEquipmentFromCart}) {
   const history = useHistory()
-  return <Popover className='flex mr-12'>
+  return <Popover className='flex mr-6'>
     {({open}) => (
       <>
         <Popover.Button className={`${open ? '' : 'text-opacity-90'} text-primary hover:text-opacity-100`}>
-          <ListIcon className='h-9 w-9' />
+          <ListIcon className='h-6 w-6' />
         </Popover.Button>
         <Transition
           as={Fragment}
@@ -91,18 +91,18 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                 </span>
                 }
               </div>
-              <Button
-                className={classNames('ml-auto m-3', {
-                  'invisible': equipments.length === 0
-                })}
-                color='primary'
-                size='sm'
-                onClick={() => {
-                  history.push('/reservation')
-                }}
-              >
-                Забронировать
-              </Button>
+              {equipments.length !== 0 && (
+                <Button
+                  className={classNames('ml-auto m-3')}
+                  color='primary'
+                  size='sm'
+                  onClick={() => {
+                    history.push('/reservation')
+                  }}
+                >
+                  Забронировать
+                </Button>
+              )}
             </div>
           </Popover.Panel>
         </Transition>

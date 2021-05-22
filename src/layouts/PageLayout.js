@@ -12,7 +12,7 @@ import Navbar from '../components/Navbar/Navbar'
 function PageLayout({children, ...props}) {
   return (
     <div {...props}>
-      <Navbar transparent />
+      <Navbar />
       {children}
       <Footer />
     </div>

@@ -18,5 +18,5 @@ export const getAuthLink = provider => API_BASE_URL + '/api/oauth2/authorize/' +
  */
 export function checkUnauthorized(response) {
   return response.status === HttpStatus.UNAUTHORIZED
-    && response.data.description === 'Full authentication is required to access this resource'
+    && response.data.message === 'Full authentication is required to access this resource'
 }
