@@ -47,7 +47,7 @@ function RentServiceHeader() {
               <div className="flex items-center space-x-2">
                 <span className="text-gray-800 line-clamp-2">
                   <span className="font-bold text-gray-800">
-                    Тулуфон:&nbsp;
+                    Телефон:&nbsp;
                   </span>
                   {telNumber}
                 </span>
