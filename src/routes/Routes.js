@@ -69,6 +69,10 @@ export default function Routes() {
                   component={lazy(() => import('@/pages/Recovery/CompleteRecoveryPage'))}
                 />
                 <CustomRoute
+                  path='/auth/oauth2/callback'
+                  component={lazy(() => import('@/pages/Login/OAuth2Callback'))}
+                />
+                <CustomRoute
                   path='*'
                   title='Страница не найдена'
                   component={NotFoundPage}

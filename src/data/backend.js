@@ -1,7 +1,7 @@
 import HttpStatus from '@/utils/httpStatus'
 
 export const API_BASE_URL = 'http://localhost:8080'
-export const OAUTH2_REDIRECT_URI = 'http://localhost:8080/oauth2/redirect'
+export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/auth/oauth2/callback'
 
 /**
  * Получение ссылки авторизации через соц. сеть

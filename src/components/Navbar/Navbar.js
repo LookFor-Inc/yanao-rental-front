@@ -23,8 +23,8 @@ function Navbar({transparent, isLoggedIn, logout}) {
   return (
     <nav className={classes}>
       <div className='flex justify-between items-center md:justify-start h-16 px-4 sm:px-6 lg:px-8'>
-        <Logo/>
-        <NavTabList/>
+        <Logo />
+        <NavTabList />
         <div className='hidden md:flex items-center justify-end md:flex-1 lg:w-0'>
           {
             isLoggedIn

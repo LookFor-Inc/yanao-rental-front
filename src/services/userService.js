@@ -24,6 +24,6 @@ export async function checkEmailAvailability(email) {
  * Получение информации об авторизированном пользователе
  * @returns {Promise<any>} Информация
  */
-export async function getUserInfo() {
-  return await axios.get(API_URL + '/me')
+export async function fetchUserInfo() {
+  return await axios.get(API_URL + '/')
 }

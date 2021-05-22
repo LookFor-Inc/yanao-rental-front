@@ -8,7 +8,7 @@ import socialButtons from '@/data/socialButtons'
  */
 function SocialAuthButtons() {
   return (
-    <div className='grid grid-cols-3 gap-4'>
+    <div className='grid grid-cols-2 gap-4'>
       {socialButtons.map((social, idx) => (
         <a
           href={social.link}
