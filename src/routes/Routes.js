@@ -5,6 +5,8 @@ import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
 import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
+import LandlordAddRentalsPage from '@/pages/Landlord/LandlordAddRentalsPage'
+import LandlordRentalsPage from '@/pages/Landlord/LandlordRentalsPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
 import Achievements from '@/pages/Profile/components/Achievements'
@@ -136,6 +138,24 @@ export default function Routes() {
                   path='/rental/:rentServiceId'
                   title='Страница проката'
                   component={RentServicePage}
+                />
+              </PageLayout>
+            </Switch>
+          </CustomRoute>
+          <CustomRoute path={'/landlord'}>
+            <Switch>
+              <PageLayout className='bg-gray-100'>
+                <CustomRoute
+                  exact
+                  path='/landlord'
+                  title='Список прокатов'
+                  component={LandlordRentalsPage}
+                />
+                <CustomRoute
+                  exact
+                  path='/landlord/add'
+                  title='Добавление нового проката'
+                  component={LandlordAddRentalsPage}
                 />
               </PageLayout>
             </Switch>
