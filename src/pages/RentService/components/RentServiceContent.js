@@ -43,7 +43,7 @@ function RentServiceContent({rentService, equipments, addEquipmentToCart}) {
                         {equipment.name}
                       </p>
                       <p className='text-sm font-medium text-gray-500 mb-1.5'>
-                        900 pуб./ч.
+                        {equipment.price} pуб./ч.
                       </p>
                     </div>
                     <p className='text-xl font-semibold text-green-700'>
