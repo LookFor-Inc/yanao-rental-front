@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Container from '@/components/Container'
 import Navbar from '@/components/Navbar/Navbar'
 import RentalHeader from '@/pages/Rental/components/RentalHeader'
+import RentalTabProvider from '@/pages/Rental/components/RentalTabsProvider'
 
 /**
  * Макет с серым фоном
@@ -15,8 +16,10 @@ function RentalLayout({children}) {
       <Navbar />
       <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen'>
         <Container>
-          <RentalHeader />
-          {children}
+          <RentalTabProvider>
+            <RentalHeader />
+            {children}
+          </RentalTabProvider>
         </Container>
       </div>
     </>

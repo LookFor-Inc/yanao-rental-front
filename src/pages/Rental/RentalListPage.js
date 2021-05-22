@@ -1,13 +1,14 @@
 import React, {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import {rentalListTab} from '@/data/rentalListTabs'
 import RentalCardList from '@/pages/Rental/components/RentalCardList'
+import {useRentalTab} from '@/pages/Rental/components/RentalTabsProvider'
 import RentalProvider from '@/pages/RentService/components/RentalProvider'
-import {setOpenedRentalTab} from '@/store/Rental/actions'
 
 function RentalListPage() {
-  const dispatch = useDispatch()
+  const {setTab} = useRentalTab()
+
   useEffect(() => {
-    dispatch(setOpenedRentalTab('/rental/list'))
+    setTab(rentalListTab)
   }, [])
 
   return (
