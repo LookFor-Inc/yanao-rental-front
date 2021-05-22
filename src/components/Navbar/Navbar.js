@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Button from '@/components/Button'
+import CartPopover from '@/components/Navbar/components/CartPopover'
 import Logo from '@/components/Navbar/components/Logo'
 import Mobile from '@/components/Navbar/components/Mobile/Mobile'
 import NavTabList from '@/components/Navbar/components/NavTabList'
+import ProfileMenu from '@/components/Navbar/components/ProfileMenu'
 import {logout} from '@/store/Auth/actions'
 
 /**
@@ -26,17 +28,15 @@ function Navbar({transparent, isLoggedIn, logout}) {
         <Logo />
         <NavTabList />
         <div className='hidden md:flex items-center justify-end md:flex-1 lg:w-0'>
-          {
-            isLoggedIn
-              ? <Button size='sm' color='secondary' onClick={() => logout()}>
-                Выйти
-              </Button>
-              : <Link to='/auth/login'>
-                <Button size='sm' color='primary'>Войти</Button>
-              </Link>
+          <CartPopover />
+          {isLoggedIn
+            ? <ProfileMenu />
+            : <Link to='/auth/login'>
+              <Button size='sm' color='primary'>Войти</Button>
+            </Link>
           }
         </div>
-        <Mobile/>
+        <Mobile />
       </div>
     </nav>
   )

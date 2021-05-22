@@ -17,7 +17,7 @@ function Logo() {
       </div>
       <div className='block md:hidden'>
         <Link to='/'>
-          <h3 className='font-semibold text-xl tracking-tight'>Indoor Schemes</h3>
+          <h3 className='font-semibold text-xl tracking-tight'>ЯНАО шеринг</h3>
         </Link>
       </div>
     </div>

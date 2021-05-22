@@ -16,7 +16,7 @@
 
 ## Introduction
 
-Frontend part of the app Indoor Schemes.
+Frontend part of the app YANAO Rental.
 
 ## Technology stack
 

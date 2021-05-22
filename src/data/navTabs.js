@@ -4,13 +4,13 @@ import QuestionCircleIcon from '@/assets/icons/QuestionCircleIcon'
 const NAV_TABS = {
   MAIN: [
     {
-      path: '/rental-locations',
-      text: 'Места прокатов',
+      path: '/rental/list',
+      text: 'Поиск прокатов',
       Icon: MapMarkerIcon
     },
     {
-      path: '/rental-rules',
-      text: 'Правила проката',
+      path: '/equipments',
+      text: 'Поиск оборудования',
       Icon: QuestionCircleIcon
     }
   ]

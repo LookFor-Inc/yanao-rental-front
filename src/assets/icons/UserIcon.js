@@ -7,7 +7,7 @@ import React from 'react'
  */
 function UserIcon(props) {
   return (
-    <svg {...props} width='24' height='24' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+    <svg {...props} viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M12 13.25C15.1055 13.25 17.625 10.7305 17.625 7.625C17.625 4.51953 15.1055 2 12 2C8.89453 2 6.375 4.51953
         6.375 7.625C6.375 10.7305 8.89453 13.25 12 13.25ZM17 14.5H14.8477C13.9805 14.8984 13.0156 15.125 12

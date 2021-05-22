@@ -1,30 +1,50 @@
 import React, {useEffect} from 'react'
 import {arrayOf, func, object} from 'prop-types'
-import {connect} from 'react-redux'
-import {Map, Placemark, YMaps} from 'react-yandex-maps'
+import {connect, useDispatch} from 'react-redux'
+import {GeolocationControl, Map, Placemark, YMaps} from 'react-yandex-maps'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
+import {setOpenedRentalTab} from '@/store/Rental/actions'
 
 function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
+  const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(setOpenedRentalTab('/rental/map'))
     fetchEquipmentTypesAndRentals()
   }, [])
 
+
   return (
     <>
-      <div className='mt-6'>
-        <YMaps>
+      <div className='mt-6 w-full'>
+        <YMaps className='w-full'>
           <Map
-          defaultState={{
-            center: [66.49, 66.66],
-            zoom: 10,
-            controls: ['zoomControl', 'fullscreenControl']
-          }}
-          modules={['control.ZoomControl', 'control.FullscreenControl']}
+            className='w-full h-128'
+            defaultState={{
+              center: [66.49, 66.66],
+              zoom: 10,
+              controls: ['zoomControl', 'fullscreenControl']
+            }}
+            modules={['control.ZoomControl', 'control.FullscreenControl']}
           >
+            <GeolocationControl options={{float: 'right'}} />
             {
-              rentals.map(({latitude, longitude}, idx) => (
-                <Placemark key={idx} geometry={[latitude, longitude]}/>
-              ))
+              rentals.map(({id, latitude, longitude, name, address}) => {
+                const balloonTemplate = `
+                  <div class='flex flex-col text-gray-800'>
+                    <div class='flex flex-col space-y-1'>
+                        <p class='font-semibold'>${name}</p>
+                        <p>${address}</p>
+                    <div>
+                    <a href='${id}' class='btn-primary rounded-md py-0.5 px-1 mt-1'>Перейти</a>
+                  </div>
+                `
+                return (<Placemark
+                  key={id}
+                  geometry={[latitude, longitude]}
+                  properties={{balloonContent: balloonTemplate}}
+                  modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
+                />)
+              })
             }
           </Map>
         </YMaps>
@@ -59,4 +79,5 @@ const rentalDispatch = dispatch => {
     fetchEquipmentTypesAndRentals: () => dispatch(fetchEquipmentTypesAndRentals())
   }
 }
+
 export default connect(rentalState, rentalDispatch)(RentalMapPage)
