@@ -2,20 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Card from '@/components/Card/Card'
 
-/**
- * @param name
- * @param id
- * @param address
- * @param img
- * @returns {JSX.Element}
- * @constructor
- */
 // eslint-disable-next-line react/prop-types
 function RentalCard({name, id, address, img}) {
   return (
     <div role='presentation'>
-      <Card className='transition duration-700 ease-in-out transform hover:scale-105 p-4 mb-3 rounded-lg shadow-md
-      px-5 py-4 cursor-pointer flex focus:outline-none bg-white'>
+      <Card className='transition transform p-6 mb-6 rounded-lg shadow-md
+      cursor-pointer flex focus:outline-none bg-white'>
         <Link to={`/rental/${id}`} key={id}
               className='w-full'>
           <div>

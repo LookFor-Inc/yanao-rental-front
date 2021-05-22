@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {arrayOf, func, object} from 'prop-types'
 import {connect} from 'react-redux'
-import {Map, Placemark, YMaps} from 'react-yandex-maps'
+import {GeolocationControl, Map, Placemark, YMaps} from 'react-yandex-maps'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
 
 function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
@@ -12,10 +12,10 @@ function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
 
   return (
     <>
-      <div className='mt-6 w-full h-full'>
-        <YMaps className='w-full h-full'>
+      <div className='mt-6 w-full'>
+        <YMaps className='w-full'>
           <Map
-            className='w-full h-96'
+            className='w-full h-128'
             defaultState={{
               center: [66.49, 66.66],
               zoom: 10,
@@ -23,15 +23,25 @@ function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
             }}
             modules={['control.ZoomControl', 'control.FullscreenControl']}
           >
+            <GeolocationControl options={{float: 'right'}} />
             {
-              rentals.map(({latitude, longitude}, idx) => (
-                <Placemark
-                  key={idx}
+              rentals.map(({id, latitude, longitude, name, address}) => {
+                const balloonTemplate = `
+                  <div class='flex flex-col text-gray-800'>
+                    <div class='flex flex-col space-y-1'>
+                        <p class='font-semibold'>${name}</p>
+                        <p>${address}</p>
+                    <div>
+                    <a href='${id}' class='btn-primary rounded-md py-0.5 px-1 mt-1'>Перейти</a>
+                  </div>
+                `
+                return (<Placemark
+                  key={id}
                   geometry={[latitude, longitude]}
-                  properties={{balloonContent: 'Это балун'}}
+                  properties={{balloonContent: balloonTemplate}}
                   modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
-                />
-              ))
+                />)
+              })
             }
           </Map>
         </YMaps>
@@ -66,4 +76,5 @@ const rentalDispatch = dispatch => {
     fetchEquipmentTypesAndRentals: () => dispatch(fetchEquipmentTypesAndRentals())
   }
 }
+
 export default connect(rentalState, rentalDispatch)(RentalMapPage)

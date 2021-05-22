@@ -1,6 +1,6 @@
 import React from 'react'
 import RentalCard from '@/pages/Rental/components/RentalCard'
-import {useRental} from '@/pages/RentalV1/components/RentalProvider'
+import {useRental} from '@/pages/RentService/components/RentalProvider'
 
 function RentalCardList() {
   const {rentals} = useRental()

@@ -81,7 +81,7 @@ module.exports = {
     'arrow-parens': [
       'error', 'as-needed'
     ],
-    'require-jsdoc': ['warn', {
+    'require-jsdoc': ['off', {
       'require': {
         'FunctionDeclaration': true,
         'MethodDefinition': true,

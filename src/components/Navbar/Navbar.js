@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Button from '@/components/Button'
+import CartPopover from '@/components/Navbar/components/CartPopover'
 import Logo from '@/components/Navbar/components/Logo'
 import Mobile from '@/components/Navbar/components/Mobile/Mobile'
 import NavTabList from '@/components/Navbar/components/NavTabList'
@@ -23,20 +24,20 @@ function Navbar({transparent, isLoggedIn, logout}) {
   return (
     <nav className={classes}>
       <div className='flex justify-between items-center md:justify-start h-16 px-4 sm:px-6 lg:px-8'>
-        <Logo/>
-        <NavTabList/>
+        <Logo />
+        <NavTabList />
         <div className='hidden md:flex items-center justify-end md:flex-1 lg:w-0'>
-          {
-            isLoggedIn
-              ? <Button size='sm' color='secondary' onClick={() => logout()}>
-                Выйти
-              </Button>
-              : <Link to='/auth/login'>
-                <Button size='sm' color='primary'>Войти</Button>
-              </Link>
+          <CartPopover />
+          {isLoggedIn
+            ? <Button size='sm' color='secondary' onClick={() => logout()}>
+              Выйти
+            </Button>
+            : <Link to='/auth/login'>
+              <Button size='sm' color='primary'>Войти</Button>
+            </Link>
           }
         </div>
-        <Mobile/>
+        <Mobile />
       </div>
     </nav>
   )

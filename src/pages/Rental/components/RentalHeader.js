@@ -7,19 +7,19 @@ import RentalTabs from '@/pages/Rental/components/RentalTabs'
 
 function RentalHeader({...props}) {
   const classes = classNames(
-    'flex justify-between w-full mb-12',
+    'flex justify-between w-full mb-12 mt-8',
     props.className
   )
 
   return (
-    <div>
+    <>
       <div className={classes}>
-        <h1 className='text-4xl text-gray-800 font-bold'>Поиск прокатов</h1>
+        <h1 className='text-4xl text-gray-800 font-bold'>
+          Поиск прокатов
+        </h1>
         <RentalTabs/>
       </div>
-      <form
-        className='flex space-x-3 w-full'
-      >
+      <form className='flex space-x-3 w-full'>
         <Input
           placeholder='Найти прокат'
           validation={false}
@@ -31,7 +31,7 @@ function RentalHeader({...props}) {
           Найти
         </Button>
       </form>
-    </div>
+    </>
   )
 }
 
