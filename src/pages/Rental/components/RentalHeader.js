@@ -11,7 +11,7 @@ function RentalHeader({...props}) {
 
   return (
     <div className={classes}>
-      <h1 className='text-2xl text-gray-800 font-bold'>Поиск прокатов</h1>
+      <h1 className='text-4xl text-gray-800 font-bold'>Поиск прокатов</h1>
       <RentalTabs />
     </div>
   )

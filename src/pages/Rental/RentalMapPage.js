@@ -9,21 +9,28 @@ function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
     fetchEquipmentTypesAndRentals()
   }, [])
 
+
   return (
     <>
-      <div className='mt-6'>
-        <YMaps>
+      <div className='mt-6 w-full h-full'>
+        <YMaps className='w-full h-full'>
           <Map
-          defaultState={{
-            center: [66.49, 66.66],
-            zoom: 10,
-            controls: ['zoomControl', 'fullscreenControl']
-          }}
-          modules={['control.ZoomControl', 'control.FullscreenControl']}
+            className='w-full h-96'
+            defaultState={{
+              center: [66.49, 66.66],
+              zoom: 10,
+              controls: ['zoomControl', 'fullscreenControl']
+            }}
+            modules={['control.ZoomControl', 'control.FullscreenControl']}
           >
             {
               rentals.map(({latitude, longitude}, idx) => (
-                <Placemark key={idx} geometry={[latitude, longitude]}/>
+                <Placemark
+                  key={idx}
+                  geometry={[latitude, longitude]}
+                  properties={{balloonContent: 'Это балун'}}
+                  modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
+                />
               ))
             }
           </Map>

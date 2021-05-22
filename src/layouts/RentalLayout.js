@@ -9,8 +9,8 @@ import RentalHeader from '@/pages/Rental/components/RentalHeader'
  */
 function RentalLayout({children}) {
   return (
-    <div className='flex flex-col items-center bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
-      <RentalHeader className='' />
+    <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
+      <RentalHeader />
       {children}
     </div>
   )
