@@ -53,7 +53,7 @@ function ProfileMenu() {
               ring-black ring-opacity-5 focus:outline-none'
             >
               {ITEMS.map(item => (
-                <Menu.Item key={item}>
+                <Menu.Item key={item.name}>
                   {({active}) => (
                     <Link
                       to={item.to}
