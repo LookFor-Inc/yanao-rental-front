@@ -8,7 +8,8 @@ import {setOpenedRentalTab} from '@/store/Rental/actions'
 const TABS = [
   {
     name: 'Список',
-    path: '/rental/list'},
+    path: '/rental/list'
+  },
   {
     name: 'Карта',
     path: '/rental/map'
@@ -17,10 +18,8 @@ const TABS = [
 
 function RentalTabs({openedTab, setOpenedTab}) {
   const btnClasses = tabParam => classNames(
-    'p-4 font-semibold text-md rounded-md',
-    {
-      'bg-white shadow': tabParam === openedTab
-    }
+    'font-semibold text-md rounded-md py-0.5 px-1.5',
+    {'bg-white shadow': tabParam === openedTab}
   )
 
   return (

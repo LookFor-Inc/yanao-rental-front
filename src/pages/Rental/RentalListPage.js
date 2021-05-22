@@ -1,10 +1,14 @@
 import React from 'react'
+import RentalCardList from '@/pages/Rental/components/RentalCardList'
+import RentalProvider from '@/pages/RentService/components/RentalProvider'
 
 function RentalListPage() {
   return (
-    <>
-        List
-    </>
+    <div className='bg-gray-100 mt-6'>
+      <RentalProvider>
+        <RentalCardList />
+      </RentalProvider>
+    </div>
   )
 }
 

@@ -1,6 +1,7 @@
 import React, {createContext, useState, useContext, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {getEquipmentTypesAndRentals} from '@/services/reservationService'
+
 const RentalContext = createContext(null)
 
 /**
@@ -18,7 +19,8 @@ const RentalProvider = ({children}) => {
         setEquipmentCategories(response.data.equipmentCategories)
         setRentals(response.data.rentals)
       })
-      .catch(reject => console.error(reject.error))
+      .catch(reject =>
+        console.error(reject.error))
   }, [])
 
   return (

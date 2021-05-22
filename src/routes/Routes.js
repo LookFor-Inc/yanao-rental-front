@@ -1,13 +1,23 @@
-import React, {lazy, Suspense} from 'react'
+import React, {Suspense} from 'react'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
 import EmptyLayout from '@/layouts/EmptyLayout'
+import PageLayout from '@/layouts/PageLayout'
 import RentalLayout from '@/layouts/RentalLayout'
+import LandingPage from '@/pages/Landing/LandingPage'
+import LoginPage from '@/pages/Login/LoginPage'
+import NotFoundPage from '@/pages/NotFound/NotFoundPage'
+import CheckEmailPage from '@/pages/Recovery/CheckEmailPage'
+import CompleteRecoveryPage from '@/pages/Recovery/CompleteRecoveryPage'
+import ConfirmRecoveryPage from '@/pages/Recovery/ConfirmRecoveryPage'
+import RecoveryPage from '@/pages/Recovery/RecoveryPage'
+import ConfirmEmailPage from '@/pages/Registration/ConfirmEmailPage'
+import RegistrationPage from '@/pages/Registration/RegistrationPage'
+import RentalListPage from '@/pages/Rental/RentalListPage'
+import RentalMapPage from '@/pages/Rental/RentalMapPage'
+import RentServicePage from '@/pages/RentService/RentServicePage'
 import CustomRoute from '@/routes/CustomRoute'
 import PageLoading from '@/routes/PageLoading'
 import ScrollToTop from '@/routes/ScrollToTop'
-
-const PageLayout = lazy(() => import('@/layouts/PageLayout'))
-const NotFoundPage = lazy(() => import('@/pages/NotFound/NotFoundPage'))
 
 /**
  * Пути в браузере
@@ -25,46 +35,46 @@ export default function Routes() {
                 <CustomRoute
                   path='/auth/login'
                   title='Авторизация'
-                  component={lazy(() => import('@/pages/Login/LoginPage'))}
+                  component={LoginPage}
                 />
                 <CustomRoute
                   exact
                   path='/auth/registration'
                   title='Регистрация'
-                  component={lazy(() => import('@/pages/Registration/RegistrationPage'))}
+                  component={RegistrationPage}
                 />
                 <CustomRoute
                   path='/auth/registration/check-email'
                   title='Подтвердите email | Регистрация'
-                  component={lazy(() => import('@/pages/Registration/CheckEmailPage'))}
+                  component={CheckEmailPage}
                 />
                 <CustomRoute
                   path='/auth/registration/confirm'
                   title='Подтверждение email | Регистрация'
-                  component={lazy(() => import('@/pages/Registration/ConfirmEmailPage'))}
+                  component={ConfirmEmailPage}
                 />
                 <CustomRoute
                   exact
                   path='/auth/recovery'
                   title='Восстановление пароля'
-                  component={lazy(() => import('@/pages/Recovery/RecoveryPage'))}
+                  component={RecoveryPage}
                 />
                 <CustomRoute
                   path='/auth/recovery/check-email'
                   title='Восстановление пароля'
-                  component={lazy(() => import('@/pages/Recovery/CheckEmailPage'))}
+                  component={CheckEmailPage}
                 />
                 <CustomRoute
                   exact
                   path='/auth/recovery/confirm'
                   title='Установка нового пароля'
-                  component={lazy(() => import('@/pages/Recovery/ConfirmRecoveryPage'))}
+                  component={ConfirmRecoveryPage}
                 />
                 <CustomRoute
                   exact
                   path='/auth/recovery/confirm/complete'
                   title='Установка нового пароля'
-                  component={lazy(() => import('@/pages/Recovery/CompleteRecoveryPage'))}
+                  component={CompleteRecoveryPage}
                 />
                 <CustomRoute
                   path='*'
@@ -82,24 +92,24 @@ export default function Routes() {
               >
                 <Switch>
                   <CustomRoute
-                      exact
-                      path='/rental/list'
-                      title='Список прокатов'
-                      component={lazy(() => import('@/pages/Rental/RentalListPage'))}
+                    exact
+                    path='/rental/list'
+                    title='Список прокатов'
+                    component={RentalListPage}
                   />
                   <CustomRoute
                     exact
                     path='/rental/map'
                     title='Карта прокатов'
-                    component={lazy(() => import('@/pages/Rental/RentalMapPage'))}
+                    component={RentalMapPage}
                   />
                 </Switch>
               </RentalLayout>
               <PageLayout>
                 <CustomRoute
-                path='/rental/:rentServiceId'
-                title='Страница проката'
-                component={lazy(() => import('@/pages/RentService/RentServicePage'))}
+                  path='/rental/:rentServiceId'
+                  title='Страница проката'
+                  component={RentServicePage}
                 />
               </PageLayout>
             </Switch>
@@ -111,13 +121,7 @@ export default function Routes() {
                   exact
                   path='/'
                   title='Главная страница'
-                  component={lazy(() => import('@/pages/Landing/LandingPage'))}
-                />
-                <CustomRoute
-                  exact
-                  path='/rental-equipment'
-                  title='Страница проката'
-                  component={lazy(() => import('@/pages/RentalV1/RentalV1Page'))}
+                  component={LandingPage}
                 />
               </Switch>
             </PageLayout>
