@@ -67,6 +67,9 @@ function ProfileMenu() {
                   )}
                 </Menu.Item>
               ))}
+              <div className='pl-4 pr-4 pt-2 pb-2 text-sm text-gray-400'>
+                У вас 170 баллов
+              </div>
             </Menu.Items>
           </Transition>
         </>
