@@ -39,8 +39,7 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                   >
                     <div className='flex items-center space-x-6'>
                       <div className='flex justify-center w-16'>
-                        <img className='h-16'
-                             src={equipment.img}
+                        <img src={equipment.img}
                              alt={`${equipment.name} img`}
                         />
                       </div>
