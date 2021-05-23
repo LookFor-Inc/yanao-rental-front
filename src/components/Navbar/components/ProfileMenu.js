@@ -3,6 +3,8 @@ import {Menu, Transition} from '@headlessui/react'
 import classNames from 'classnames'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {LANDLORD, ADMIN} from '@/data/userTypes'
+
 
 const ITEMS = [
   {
@@ -52,6 +54,36 @@ function ProfileMenu() {
               className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1
               ring-black ring-opacity-5 focus:outline-none'
             >
+              {userData.type === LANDLORD && (
+                <Menu.Item>
+                  {({active}) => (
+                    <Link
+                      to='/landlord'
+                      className={classNames(
+                        active ? 'bg-gray-100' : '',
+                        'block px-4 py-2 text-sm text-gray-700'
+                      )}
+                    >
+                      Управление прокатами
+                    </Link>
+                  )}
+                </Menu.Item>
+              )}
+              {userData.type === ADMIN &&
+              <Menu.Item>
+                {({active}) => (
+                  <Link
+                  to='/statistics'
+                  className={classNames(
+                    active ? 'bg-gray-100' : '',
+                    'block px-4 py-2 text-sm text-gray-700'
+                  )}
+                  >
+                  Аналитика
+                  </Link>
+                )}
+              </Menu.Item>
+              }
               {ITEMS.map(item => (
                 <Menu.Item key={item.name}>
                   {({active}) => (
@@ -67,6 +99,9 @@ function ProfileMenu() {
                   )}
                 </Menu.Item>
               ))}
+              <div className='pl-4 pr-4 pt-2 pb-2 text-sm text-gray-400'>
+                У вас 170 баллов
+              </div>
             </Menu.Items>
           </Transition>
         </>

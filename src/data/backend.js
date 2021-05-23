@@ -17,6 +17,11 @@ export const getAuthLink = provider => API_BASE_URL + '/api/oauth2/authorize/' +
  * @returns {boolean} Необходимость авторизации
  */
 export function checkUnauthorized(response) {
-  return response.status === HttpStatus.UNAUTHORIZED
-    && response.data.message === 'Full authentication is required to access this resource'
+  try {
+    return response.status === HttpStatus.UNAUTHORIZED
+      && response.data.message === 'Full authentication is required to access this resource'
+  } catch (e) {
+    console.error(e)
+  }
+  return false
 }

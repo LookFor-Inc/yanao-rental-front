@@ -15,6 +15,7 @@ function NavTab({path, text}) {
   return (
     <li className='relative flex items-center font-medium text-sm lg:text-base hover:text-primary transition-colors'>
       <NavLink
+        exact
         className={classNames('flex h-full items-center nav-link hover:nav-link-active', {
           'nav-link-active': text === 'Поиск прокатов' && location.pathname === '/rental/map'
         })}

@@ -79,33 +79,28 @@ const ACHIEVEMENTS = [
 
 function Achievements() {
   return (
-    <div>
-      <h1 className='text-2xl text-gray-800 font-semibold my-6'>
-        Достижения
-      </h1>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-        {ACHIEVEMENTS.map(a => (
-          <div
-            key={a.id}
-            className={classNames('flex flex-col space-y-3 justify-center items-center m-5', {
-              'text-gray-500': !a.status
-            })}
-          >
-            {createElement(a.component, {
-              'className': classNames('h-36 focus:outline-none', {
-                'opacity-30': !a.status
-              }),
-              'data-tip': a.description
-            })}
-            <ReactTooltip
-              offset={{top: 15}}
-            />
-            <div className='font-bold text-xl'>{a.name}</div>
-            <div className='text-center md:hidden text-md font-medium'>{a.description}</div>
-            <div>{a.points} баллов</div>
-          </div>
-        ))}
-      </div>
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+      {ACHIEVEMENTS.map(a => (
+        <div
+          key={a.id}
+          className={classNames('flex flex-col space-y-3 justify-center items-center m-5', {
+            'text-gray-500': !a.status
+          })}
+        >
+          {createElement(a.component, {
+            'className': classNames('h-36 focus:outline-none', {
+              'opacity-30': !a.status
+            }),
+            'data-tip': a.description
+          })}
+          <ReactTooltip
+            offset={{top: 15}}
+          />
+          <div className='font-bold text-xl'>{a.name}</div>
+          <div className='text-center md:hidden text-md font-medium'>{a.description}</div>
+          <div>{a.points} баллов</div>
+        </div>
+      ))}
     </div>
   )
 }

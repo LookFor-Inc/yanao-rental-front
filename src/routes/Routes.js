@@ -1,12 +1,21 @@
 import React, {lazy, Suspense} from 'react'
 import {useSelector} from 'react-redux'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
+import {ADMIN} from '@/data/userTypes'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
 import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
+import RentalEquipments from '@/pages/Landlord/components/RentalEquipments'
+import RentalReservations from '@/pages/Landlord/components/RentalReservations'
+import RentalSettings from '@/pages/Landlord/components/RentalSettings'
+import LandlordAddRentalsPage from '@/pages/Landlord/LandlordAddRentalsPage'
+import LandlordRentalPage from '@/pages/Landlord/LandlordRentalPage'
+import LandlordRentalsPage from '@/pages/Landlord/LandlordRentalsPage'
 import LoginPage from '@/pages/Login/LoginPage'
 import NotFoundPage from '@/pages/NotFound/NotFoundPage'
+import Achievements from '@/pages/Profile/components/Achievements'
+import ProfileContent from '@/pages/Profile/components/ProfileContent'
 import ProfilePage from '@/pages/Profile/ProfilePage'
 import CheckEmailPage from '@/pages/Recovery/CheckEmailPage'
 import CompleteRecoveryPage from '@/pages/Recovery/CompleteRecoveryPage'
@@ -18,6 +27,7 @@ import RentalListPage from '@/pages/Rental/RentalListPage'
 import RentalMapPage from '@/pages/Rental/RentalMapPage'
 import RentServicePage from '@/pages/RentService/RentServicePage'
 import ReservationPage from '@/pages/Reservation/ReservationPage'
+import StatisticsPage from '@/pages/Statistics/StatisticsPage'
 import CustomRoute from '@/routes/CustomRoute'
 import PageLoading from '@/routes/PageLoading'
 import ScrollToTop from '@/routes/ScrollToTop'
@@ -28,6 +38,7 @@ import ScrollToTop from '@/routes/ScrollToTop'
  */
 export default function Routes() {
   const auth = useSelector(state => state.auth.isLoggedIn)
+  const userType = useSelector(state => state.user.type)
 
   return (
     <Suspense fallback={<PageLoading />}>
@@ -138,14 +149,75 @@ export default function Routes() {
               </PageLayout>
             </Switch>
           </CustomRoute>
-          <CustomRoute path={'/profile'}>
-            <PageLayout className='bg-gray-100'>
-              <CustomRoute
-                path='/profile'
-                title='Профиль'
-                component={ProfilePage}
-              />
-            </PageLayout>
+          <CustomRoute path={'/landlord'}>
+            <Switch>
+              <PageLayout className='bg-gray-100'>
+                <Switch>
+                  <CustomRoute
+                    exact
+                    path='/landlord'
+                    title='Список прокатов'
+                    component={LandlordRentalsPage}
+                  />
+                  <CustomRoute
+                    exact
+                    path='/landlord/add'
+                    title='Добавление нового проката'
+                    component={LandlordAddRentalsPage}
+                  />
+                  <CustomRoute
+                    path='/landlord/rental/:path?'
+                    title='Панель управления проката'
+                  >
+                    <Switch>
+                      <LandlordRentalPage>
+                        <Switch>
+                          <CustomRoute
+                            exact
+                            path={['/landlord/rental/:rentServiceId', '/landlord/rental/:rentServiceId/settings']}
+                            title='Настройка проката2'
+                            component={RentalSettings}
+                          />
+                          <CustomRoute
+                            path='/landlord/rental/:rentServiceId/equipments'
+                            title='Оборудование проката'
+                            component={RentalEquipments}
+                          />
+                          <CustomRoute
+                            path='/landlord/rental/:rentServiceId/reservations'
+                            title='Брони проката'
+                            component={RentalReservations}
+                          />
+                        </Switch>
+                      </LandlordRentalPage>
+                    </Switch>
+                  </CustomRoute>
+                </Switch>
+              </PageLayout>
+            </Switch>
+          </CustomRoute>
+          <CustomRoute path={'/profile/:path?'}>
+            <Switch>
+              <PageLayout className='bg-gray-100'>
+                <ProfilePage className='bg-white'>
+                  <Switch>
+                    <CustomRoute
+                      exact
+                      path='/profile'
+                      title='Профиль'
+                      component={ProfileContent}
+                      access={auth}
+                    />
+                    <CustomRoute
+                      path='/profile/achievements'
+                      title='Профиль'
+                      component={Achievements}
+                      access={auth}
+                    />
+                  </Switch>
+                </ProfilePage>
+              </PageLayout>
+            </Switch>
           </CustomRoute>
           <CustomRoute path={'/reservation'}>
             <PageLayout className='bg-gray-100'>
@@ -154,6 +226,16 @@ export default function Routes() {
                 title='Оформление'
                 component={ReservationPage}
                 access={auth}
+              />
+            </PageLayout>
+          </CustomRoute>
+          <CustomRoute path={'/statistics'}>
+            <PageLayout>
+              <CustomRoute
+                path='/'
+                title='Статистика'
+                component={StatisticsPage}
+                access={userType === ADMIN}
               />
             </PageLayout>
           </CustomRoute>

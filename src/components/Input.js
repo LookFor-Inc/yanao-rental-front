@@ -15,7 +15,7 @@ import PropTypes from 'prop-types'
  * @returns {JSX.Element} Поле ввода
  */
 const Input = forwardRef(({
-  label, type = 'text', placeholder, disabled,
+  label, type = 'text', value, placeholder, disabled,
   error, validation = true, size, className, ...props
 }, ref) => {
   const classes = classNames('input', {
@@ -33,6 +33,7 @@ const Input = forwardRef(({
       )}
       <input
         {...props}
+        value={value}
         ref={ref}
         type={type}
         className={classes}
@@ -54,6 +55,7 @@ const Input = forwardRef(({
 
 Input.propTypes = {
   label: PropTypes.string,
+  value: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
