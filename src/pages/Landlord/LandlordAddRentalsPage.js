@@ -7,16 +7,18 @@ import Card from '@/components/Card/Card'
 import Container from '@/components/Container'
 import Input from '@/components/Input'
 
-function LandlordAddRentalsPage({name, address, phoneNumber}) {
+function LandlordAddRentalsPage({name, address, phoneNumber, startTime, endTime, schedule, newRental=true}) {
   return (
     <>
       <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen'>
         <Container>
           <div className='flex space-x-4 items-center'>
+            {newRental &&
             <Link to='/landlord'>
-              <ChevronLeftIcon className='w-10 h-10' />
+              <ChevronLeftIcon className='w-10 h-10'/>
             </Link>
-            <h1 className='text-4xl text-gray-800 font-bold my-8'>
+            }
+            <h1 className={'text-4xl text-gray-800 font-bold ' + (newRental ? 'my-8' : 'mb-8')}>
               Добавление нового проката
             </h1>
           </div>
@@ -26,6 +28,7 @@ function LandlordAddRentalsPage({name, address, phoneNumber}) {
                 <div className='grid grid-cols-6'>
                   <div className='col-span-7'>
                     <Input
+                      value={name}
                       placeholder='Велобайк'
                       label='Название проекта'
                       validation={true}
@@ -33,6 +36,7 @@ function LandlordAddRentalsPage({name, address, phoneNumber}) {
                   </div>
                   <div className='col-span-8'>
                     <Input
+                      value={address}
                       label='Адрес проката'
                       placeholder='г. Новый Уренгой, Ленинградский проспект, 7'
                       validation={true}
@@ -40,6 +44,7 @@ function LandlordAddRentalsPage({name, address, phoneNumber}) {
                   </div>
                   <div className='col-span-6'>
                     <Input
+                      value={phoneNumber}
                       placeholder='+7(999)999999'
                       label='Номер телефона'
                       type='tel'
@@ -51,7 +56,7 @@ function LandlordAddRentalsPage({name, address, phoneNumber}) {
                     <div className='flex space-x-8 justify-between'>
                       <div className='w-full'>
                         <label htmlFor='schedule' className='text-sm text-gray-800 font-medium'>График работы</label>
-                        <select id='schedule' name='country' autoComplete='country'
+                        <select value={schedule} id='schedule' name='schedule' autoComplete='schedule'
                                 className='mt-1 block w-full mt-2 pt-2 pb-3 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
                           <option>пн-пт</option>
                           <option>пн-вс</option>
@@ -60,19 +65,18 @@ function LandlordAddRentalsPage({name, address, phoneNumber}) {
 
                       <div className='w-full'>
                         <Input
+                          value={startTime}
                           label='Время начала работы'
                           type='time'/>
                       </div>
-
                       <div className='w-full'>
                         <Input
+                          value={endTime}
                           label='Время окончания работы'
                           type='time'/>
                       </div>
                     </div>
                   </div>
-
-
                 </div>
               </div>
               <div>
@@ -127,7 +131,11 @@ function LandlordAddRentalsPage({name, address, phoneNumber}) {
 LandlordAddRentalsPage.propTypes = {
   name: PropTypes.string,
   address: PropTypes.string,
-  phoneNumber: PropTypes.string
+  phoneNumber: PropTypes.string,
+  endTime: PropTypes.string,
+  startTime: PropTypes.string,
+  schedule: PropTypes.string,
+  newRental: PropTypes.bool
 }
 
 export default LandlordAddRentalsPage

@@ -2,56 +2,56 @@ import React from 'react'
 
 const rentalList = [
   {
-    city: 'Новый Уренгой',
-    address: 'Адрес',
-    dateStart: '16 мар. 16:30',
+    name: 'Прокат спортивного оборудования в НУ',
+    address: 'г. Новый Уренгой',
+    dateStart: '22 мая 16:00',
     equipmentList: [
       {
-        name: 'Велосипед мужской',
+        name: 'Велосипед Trek',
         amount: 1
       },
       {
-        name: 'Велосипед мужской',
+        name: 'Велосипед Boxxer',
         amount: 1
       }
     ],
-    dateEnd: '17 мар. 17:30',
+    dateEnd: '24 мая 16:00',
     status: 'active',
     score: '23',
-    cost: 4400
+    cost: 5000
   },
   {
-    city: 'Ноябрьск',
-    address: 'ул. Космонавтов 13',
-    dateStart: '16 апр. 11:30',
-    dateEnd: '17 мар. 17:30',
+    name: 'Сервис Олега',
+    address: 'г. Ноябрьск',
+    dateStart: '20 мая 11:00',
+    dateEnd: '22 мая 18:00',
     equipmentList: [
       {
-        name: 'Велосипед мужской',
-        amount: 1
+        name: 'Велосипед Pinarello',
+        amount: 2
       },
       {
-        name: 'Велосипед мужской',
-        amount: 1
+        name: 'Велосипед Townie',
+        amount: 2
       }
     ],
     status: 'close',
     score: '40',
-    cost: 4000
+    cost: 6500
   },
   {
-    city: 'Салехард',
-    address: 'Адрес',
-    dateStart: '16 мар. 16:30',
-    dateEnd: '17 мар. 17:30',
+    name: 'Мотосалон STELS',
+    address: 'г. Салехард',
+    dateStart: '14 мая 10:00',
+    dateEnd: '19 мая 19:30',
     equipmentList: [
       {
-        name: 'Велосипед мужской',
-        amount: 2
+        name: 'Велосипед Flover',
+        amount: 1
       },
       {
-        name: 'Велосипед детский',
-        amount: 3
+        name: 'Велосипед Pinarello',
+        amount: 2
       }
     ],
     status: 'close',
@@ -59,34 +59,34 @@ const rentalList = [
     cost: 4200
   },
   {
-    city: 'Новый Уренгой',
-    address: 'Адрес',
-    dateStart: '16 мар. 16:30',
-    dateEnd: '17 мар. 17:30',
+    name: 'Катай везде',
+    address: 'г. Новый Уренгой',
+    dateStart: '10 мая 13:00',
+    dateEnd: '14 мая 15:00',
     equipmentList: [
       {
         name: 'Ролики',
-        amount: 2
-      }
-    ],
-    status: 'close',
-    score: '23',
-    cost: 2000
-  },
-  {
-    city: 'Новый Уренгой',
-    address: 'Адрес',
-    dateStart: '16 мар. 16:30',
-    dateEnd: '17 мар. 17:30',
-    equipmentList: [
-      {
-        name: 'Самокат',
         amount: 3
       }
     ],
     status: 'close',
     score: '23',
-    cost: 1500
+    cost: 3600
+  },
+  {
+    name: 'Катай везде',
+    address: 'г. Новый Уренгой',
+    dateStart: '9 мая 10:00',
+    dateEnd: '11 мая 15:00',
+    equipmentList: [
+      {
+        name: 'Самокат Ninebot',
+        amount: 3
+      }
+    ],
+    status: 'close',
+    score: '23',
+    cost: 2300
   }
 ]
 
@@ -134,7 +134,7 @@ function ProfileContent() {
                   <tr key={index}>
                     <td className='px-6 py-4 whitespace-nowrap'>
                       <div className='text-sm font-medium text-gray-900'>
-                        {rent.city}
+                        {rent.name}
                       </div>
                       <div className='text-sm text-gray-500'>
                         {rent.address}
