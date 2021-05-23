@@ -1,5 +1,6 @@
 import {loginUser, logoutUser} from '@/services/authService'
 import {LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, RESET_AUTH_ERROR, SET_AUTH_ERROR} from '@/store/types'
+import {getUserInfo, resetUserData} from '@/store/User/actions'
 import HttpStatus from '@/utils/httpStatus'
 
 /**
@@ -15,6 +16,8 @@ export function login(email, password, remember = false) {
       const res = await loginUser(email, password, remember)
 
       if (res.status === HttpStatus.OK) {
+        // TODO: XD
+        dispatch(getUserInfo())
         dispatch(loginSuccess())
         return Promise.resolve(res)
       } else {
@@ -60,6 +63,7 @@ export function logout() {
   return async dispatch => {
     try {
       await logoutUser()
+      dispatch(resetUserData())
       dispatch(logoutSuccess())
     } catch (e) {
       dispatch(setAuthError(e.response.message))

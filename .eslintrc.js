@@ -34,7 +34,7 @@ module.exports = {
     }
   },
   'rules': {
-    'max-len': ['error', {'code': 120}],
+    'max-len': ['off', {'code': 120}],
     'indent': [2, 2, {
       'SwitchCase': 1,
       'ignoredNodes': [

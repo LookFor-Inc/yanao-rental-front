@@ -92,3 +92,16 @@ export async function resetUserPassword(token, newPassword) {
     password: newPassword
   })
 }
+
+/**
+ * Проверка авторизации
+ * @returns {Promise<boolean>} Статус авторизации
+ */
+export async function checkAuth() {
+  try {
+    const res = await axios.get(API_URL + '/check-auth')
+    return res.status === HttpStatus.OK
+  } catch (e) {
+    return false
+  }
+}

@@ -2,13 +2,17 @@ import React, {useEffect} from 'react'
 import {arrayOf, func, object} from 'prop-types'
 import {connect} from 'react-redux'
 import {GeolocationControl, Map, Placemark, YMaps} from 'react-yandex-maps'
+import {rentalMapTab} from '@/data/rentalListTabs'
+import {useRentalTab} from '@/pages/Rental/components/RentalTabsProvider'
 import {fetchEquipmentTypesAndRentals} from '@/store/EquipmentAndRentals/actions'
 
 function RentalMapPage({rentals, fetchEquipmentTypesAndRentals}) {
+  const {setTab} = useRentalTab()
+
   useEffect(() => {
+    setTab(rentalMapTab)
     fetchEquipmentTypesAndRentals()
   }, [])
-
 
   return (
     <>

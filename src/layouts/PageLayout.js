@@ -6,20 +6,22 @@ import Navbar from '../components/Navbar/Navbar'
 /**
  * Общий макет страницы
  * @param {element} children Дочерние элементы
+ * @param {any} props Доп. свойства
  * @returns {JSX.Element} Макет
  */
-function PageLayout({children}) {
+function PageLayout({children, ...props}) {
   return (
-    <>
-      <Navbar transparent />
+    <div {...props}>
+      <Navbar />
       {children}
       <Footer />
-    </>
+    </div>
   )
 }
 
 PageLayout.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  props: PropTypes.any
 }
 
 export default PageLayout

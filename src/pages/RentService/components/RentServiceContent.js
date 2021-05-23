@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
 import {addEquipmentToCart} from '@/store/Cart/actions'
 
 function RentServiceContent({rentService, equipments, addEquipmentToCart}) {
   const {categories} = rentService
+  const history = useHistory()
   /**
    * Проверка на наличие оборудования в корзине
    * @param {string} equipmentId Идентификатор оборудования
@@ -41,7 +43,7 @@ function RentServiceContent({rentService, equipments, addEquipmentToCart}) {
                         {equipment.name}
                       </p>
                       <p className='text-sm font-medium text-gray-500 mb-1.5'>
-                        900 pуб./ч.
+                        {equipment.price} pуб./ч.
                       </p>
                     </div>
                     <p className='text-xl font-semibold text-green-700'>
@@ -55,10 +57,12 @@ function RentServiceContent({rentService, equipments, addEquipmentToCart}) {
                     onClick={() => {
                       if (!isEquipmentRent(equipment.id)) {
                         addEquipmentToCart(equipment)
+                      } else {
+                        history.push('/reservation')
                       }
                     }}
                   >
-                    {!isEquipmentRent(equipment.id) ? 'Забронировать' : 'В корзину'}
+                    {!isEquipmentRent(equipment.id) ? 'Забронировать' : 'К оформлению'}
                   </Button>
                 </div>
               </Card>

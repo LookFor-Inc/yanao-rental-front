@@ -11,13 +11,13 @@ function Logo() {
       <div className='hidden md:block'>
         <Link to='/'>
           <div className='flex space-x-4'>
-            <h3 className='font-semibold text-lg lg:text-2xl tracking-tight'>YANAO Sharing</h3>
+            <h3 className='font-semibold text-lg lg:text-2xl tracking-tight'>ЯНАО шеринг</h3>
           </div>
         </Link>
       </div>
       <div className='block md:hidden'>
         <Link to='/'>
-          <h3 className='font-semibold text-xl tracking-tight'>Indoor Schemes</h3>
+          <h3 className='font-semibold text-xl tracking-tight'>ЯНАО шеринг</h3>
         </Link>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import React, {Fragment} from 'react'
 import {Popover, Transition} from '@headlessui/react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import ListIcon from '@/assets/icons/ListIcon'
 import MinusIcon from '@/assets/icons/MinusIcon'
 import PlusIcon from '@/assets/icons/PlusIcon'
@@ -10,11 +12,12 @@ import Button from '@/components/Button'
 import {decreaseEquipmentAmount, increaseEquipmentAmount, removeEquipmentFromCart} from '@/store/Cart/actions'
 
 function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmount, removeEquipmentFromCart}) {
-  return <Popover className='flex mr-12'>
+  const history = useHistory()
+  return <Popover className='flex mr-6'>
     {({open}) => (
       <>
         <Popover.Button className={`${open ? '' : 'text-opacity-90'} text-primary hover:text-opacity-100`}>
-          <ListIcon className='h-9 w-9' />
+          <ListIcon className='h-6 w-6' />
         </Popover.Button>
         <Transition
           as={Fragment}
@@ -88,9 +91,18 @@ function CartPopover({equipments, increaseEquipmentAmount, decreaseEquipmentAmou
                 </span>
                 }
               </div>
-              <Button className='ml-auto m-3' color='primary' size='sm'>
-                Забронировать
-              </Button>
+              {equipments.length !== 0 && (
+                <Button
+                  className={classNames('ml-auto m-3')}
+                  color='primary'
+                  size='sm'
+                  onClick={() => {
+                    history.push('/reservation')
+                  }}
+                >
+                  Забронировать
+                </Button>
+              )}
             </div>
           </Popover.Panel>
         </Transition>
