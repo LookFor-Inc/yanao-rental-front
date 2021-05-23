@@ -1,8 +1,9 @@
 import React from 'react'
 import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
+import ToastProvider from '@/hooks/Toasts/ToastProvider'
 import Routes from '@/routes/Routes'
-import {store, persist} from '@/store/configureStore'
+import {persist, store} from '@/store/configureStore'
 
 /**
  * Главный компонент
@@ -12,7 +13,9 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persist}>
-        <Routes />
+        <ToastProvider variant='bottom_right'>
+          <Routes />
+        </ToastProvider>
       </PersistGate>
     </Provider>
   )
