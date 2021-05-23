@@ -1,7 +1,7 @@
 import HttpStatus from '@/utils/httpStatus'
 
-export const API_BASE_URL = 'http://localhost:8080'
-export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/auth/oauth2/callback'
+export const API_BASE_URL = 'http://yanao-sharing-backend.herokuapp.com'
+export const OAUTH2_REDIRECT_URI = 'https://yanao-sharing.herokuapp.com/auth/oauth2/callback'
 
 /**
  * Получение ссылки авторизации через соц. сеть
