@@ -1,17 +1,25 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
+import ChevronLeftIcon from '@/assets/icons/Chevron/ChevronLeftIcon'
 import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
 import Container from '@/components/Container'
 import Input from '@/components/Input'
 
-function LandlordAddRentalsPage() {
+function LandlordAddRentalsPage({name, address, phoneNumber}) {
   return (
     <>
       <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen'>
         <Container>
-          <h1 className='text-4xl text-gray-800 font-bold my-8'>
-            Добавление нового проката
-          </h1>
+          <div className='flex space-x-4 items-center'>
+            <Link to='/landlord'>
+              <ChevronLeftIcon className='w-10 h-10' />
+            </Link>
+            <h1 className='text-4xl text-gray-800 font-bold my-8'>
+              Добавление нового проката
+            </h1>
+          </div>
           <Card>
             <Card.Body>
               <div className='bg-white'>
@@ -114,6 +122,12 @@ function LandlordAddRentalsPage() {
       </div>
     </>
   )
+}
+
+LandlordAddRentalsPage.propTypes = {
+  name: PropTypes.string,
+  address: PropTypes.string,
+  phoneNumber: PropTypes.string
 }
 
 export default LandlordAddRentalsPage
