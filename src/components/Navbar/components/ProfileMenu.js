@@ -3,7 +3,8 @@ import {Menu, Transition} from '@headlessui/react'
 import classNames from 'classnames'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {LANDLORD} from '@/data/userTypes'
+import {LANDLORD, ADMIN} from '@/data/userTypes'
+
 
 const ITEMS = [
   {
@@ -68,6 +69,21 @@ function ProfileMenu() {
                   )}
                 </Menu.Item>
               )}
+              {userData.type === ADMIN &&
+              <Menu.Item>
+                {({active}) => (
+                  <Link
+                  to='/statistics'
+                  className={classNames(
+                    active ? 'bg-gray-100' : '',
+                    'block px-4 py-2 text-sm text-gray-700'
+                  )}
+                  >
+                  Аналитика
+                  </Link>
+                )}
+              </Menu.Item>
+              }
               {ITEMS.map(item => (
                 <Menu.Item key={item.name}>
                   {({active}) => (

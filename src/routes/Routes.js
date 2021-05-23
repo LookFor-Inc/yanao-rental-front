@@ -1,18 +1,15 @@
 import React, {lazy, Suspense} from 'react'
 import {useSelector} from 'react-redux'
 import {BrowserRouter as Router, Switch} from 'react-router-dom'
+import {ADMIN} from '@/data/userTypes'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import PageLayout from '@/layouts/PageLayout'
 import RentalLayout from '@/layouts/RentalLayout'
 import LandingPage from '@/pages/Landing/LandingPage'
-// eslint-disable-next-line no-unused-vars
 import RentalEquipments from '@/pages/Landlord/components/RentalEquipments'
-// eslint-disable-next-line no-unused-vars
 import RentalReservations from '@/pages/Landlord/components/RentalReservations'
-// eslint-disable-next-line no-unused-vars
 import RentalSettings from '@/pages/Landlord/components/RentalSettings'
 import LandlordAddRentalsPage from '@/pages/Landlord/LandlordAddRentalsPage'
-// eslint-disable-next-line no-unused-vars
 import LandlordRentalPage from '@/pages/Landlord/LandlordRentalPage'
 import LandlordRentalsPage from '@/pages/Landlord/LandlordRentalsPage'
 import LoginPage from '@/pages/Login/LoginPage'
@@ -30,6 +27,7 @@ import RentalListPage from '@/pages/Rental/RentalListPage'
 import RentalMapPage from '@/pages/Rental/RentalMapPage'
 import RentServicePage from '@/pages/RentService/RentServicePage'
 import ReservationPage from '@/pages/Reservation/ReservationPage'
+import StatisticsPage from '@/pages/Statistics/StatisticsPage'
 import CustomRoute from '@/routes/CustomRoute'
 import PageLoading from '@/routes/PageLoading'
 import ScrollToTop from '@/routes/ScrollToTop'
@@ -40,6 +38,7 @@ import ScrollToTop from '@/routes/ScrollToTop'
  */
 export default function Routes() {
   const auth = useSelector(state => state.auth.isLoggedIn)
+  const userType = useSelector(state => state.user.type)
 
   return (
     <Suspense fallback={<PageLoading />}>
@@ -227,6 +226,16 @@ export default function Routes() {
                 title='Оформление'
                 component={ReservationPage}
                 access={auth}
+              />
+            </PageLayout>
+          </CustomRoute>
+          <CustomRoute path={'/statistics'}>
+            <PageLayout>
+              <CustomRoute
+                path='/'
+                title='Статистика'
+                component={StatisticsPage}
+                access={userType === ADMIN}
               />
             </PageLayout>
           </CustomRoute>
