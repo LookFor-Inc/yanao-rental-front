@@ -36,7 +36,7 @@ function LandingPage() {
       <section className='my-4'>
         <Container>
           <h1 className='text-3xl text-gray-800 font-bold my-10'>
-            Спортивные события
+            Лента спортивных событий
           </h1>
           <div className='flex flex-col space-y-10'>
             <Card>
