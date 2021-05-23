@@ -89,9 +89,9 @@ function LandlordAddRentalsPage() {
                     <div className='flex text-sm text-gray-600'>
                       <label
                         htmlFor='file-upload'
-                        className='relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500'
+                        className='relative cursor-pointer bg-white rounded-md font-medium focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2'
                       >
-                        <span>Загрузите файл</span>
+                        <span className='text-primary'>Загрузите файл</span>
                         <input id='file-upload' name='file-upload' type='file' className='sr-only'/>
                       </label>
                       <p className='pl-1'>или перетащите</p>
@@ -106,7 +106,7 @@ function LandlordAddRentalsPage() {
                 size='md'
                 color='primary'
               >
-                Save
+                Сохранить
               </Button>
             </Card.Footer>
           </Card>
