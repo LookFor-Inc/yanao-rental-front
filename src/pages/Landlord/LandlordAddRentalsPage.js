@@ -10,7 +10,7 @@ import Input from '@/components/Input'
 function LandlordAddRentalsPage({name, address, phoneNumber, startTime, endTime, schedule, newRental=true}) {
   return (
     <>
-      <div className='flex flex-col items-center w-full h-full bg-gray-100 min-h-screen'>
+      <div className='flex flex-col items-center w-full h-full min-h-screen'>
         <Container>
           <div className='flex space-x-4 items-center'>
             {newRental &&
@@ -18,11 +18,11 @@ function LandlordAddRentalsPage({name, address, phoneNumber, startTime, endTime,
               <ChevronLeftIcon className='w-10 h-10'/>
             </Link>
             }
-            <h1 className={'text-4xl text-gray-800 font-bold ' + (newRental ? 'my-8' : 'mb-8')}>
+            <h1 className={'text-3xl text-gray-800 font-bold ' + (newRental ? 'my-8' : 'mb-8')}>
               Добавление нового проката
             </h1>
           </div>
-          <Card>
+          <Card className='shadow-lg border-2 border-gray-100'>
             <Card.Body>
               <div className='bg-white'>
                 <div className='grid grid-cols-6'>

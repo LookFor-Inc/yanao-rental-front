@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import TrashIcon from '@/assets/icons/TrashIcon'
 import WrenchIcon from '@/assets/icons/WrenchIcon'
+import Button from '@/components/Button'
 import Card from '@/components/Card/Card'
 import {takeRentService} from '@/services/rentServiceService'
 
@@ -19,6 +20,9 @@ function RentalEquipments() {
 
   return (
     <div>
+      <div className='flex flex-row-reverse w-full'>
+        <Button color='primary'>Добавить оборудование</Button>
+      </div>
       {Object.entries(categories).map(([categoryName, equipments], id) => (
         <div className='mt-12' key={id}>
           <h1 className='text-2xl text-gray-800 font-bold mb-6'>
@@ -26,7 +30,7 @@ function RentalEquipments() {
           </h1>
           <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4'>
             {equipments.map((equipment, idx) => (
-              <Card key={idx} className='flex flex-col justify-between'>
+              <Card key={idx} className='flex flex-col justify-between border-2 border-gray-100 shadow-md'>
                 <div className='flex items-center justify-center'>
                   <img
                     className='w-52 p-2'
